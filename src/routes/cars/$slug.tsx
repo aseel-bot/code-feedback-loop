@@ -66,7 +66,7 @@ function CarDetails() {
 
             <div className="mt-6 space-y-4">
               <h2 className="text-lg">معلومات السيارة</h2>
-              {car.info.map((s) => (
+              {car.info.map((s: (typeof car.info)[number]) => (
                 <div key={s.title} className="rounded-xl border border-border bg-card p-5">
                   <h3 className="text-base">{s.title}</h3>
                   <p className="mt-2 text-sm leading-7 text-muted-foreground">{s.body}</p>
@@ -105,7 +105,7 @@ function CarDetails() {
           <aside className="lg:sticky lg:top-28 lg:h-fit">
             <div className="rounded-2xl border border-border bg-card p-6 shadow-[var(--shadow-card)]">
               <div className="flex flex-wrap gap-2">
-                {car.badges.map((b) => (
+                {car.badges.map((b: string) => (
                   <span
                     key={b}
                     className="rounded-full bg-accent px-3 py-1 text-[11px] font-bold text-accent-foreground"

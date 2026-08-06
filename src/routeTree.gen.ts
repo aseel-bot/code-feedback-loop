@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CarsIndexRouteImport } from './routes/cars/index'
+import { Route as CarsSlugRouteImport } from './routes/cars/$slug'
+import { Route as CarsPrintRouteImport } from './routes/cars/print'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CarsIndexRoute = CarsIndexRouteImport.update({
+  id: '/cars/',
+  path: '/cars/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarsSlugRoute = CarsSlugRouteImport.update({
+  id: '/cars/$slug',
+  path: '/cars/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarsPrintRoute = CarsPrintRouteImport.update({
+  id: '/cars/print',
+  path: '/cars/print',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cars/$slug': typeof CarsSlugRoute
+  '/cars/print': typeof CarsPrintRoute
+  '/cars/': typeof CarsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cars/$slug': typeof CarsSlugRoute
+  '/cars/print': typeof CarsPrintRoute
+  '/cars': typeof CarsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cars/$slug': typeof CarsSlugRoute
+  '/cars/print': typeof CarsPrintRoute
+  '/cars/': typeof CarsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/cars/$slug' | '/cars/print' | '/cars/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/cars/$slug' | '/cars/print' | '/cars'
+  id: '__root__' | '/' | '/cars/$slug' | '/cars/print' | '/cars/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CarsSlugRoute: typeof CarsSlugRoute
+  CarsPrintRoute: typeof CarsPrintRoute
+  CarsIndexRoute: typeof CarsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +78,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cars/': {
+      id: '/cars/'
+      path: '/cars'
+      fullPath: '/cars/'
+      preLoaderRoute: typeof CarsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cars/$slug': {
+      id: '/cars/$slug'
+      path: '/cars/$slug'
+      fullPath: '/cars/$slug'
+      preLoaderRoute: typeof CarsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cars/print': {
+      id: '/cars/print'
+      path: '/cars/print'
+      fullPath: '/cars/print'
+      preLoaderRoute: typeof CarsPrintRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CarsSlugRoute: CarsSlugRoute,
+  CarsPrintRoute: CarsPrintRoute,
+  CarsIndexRoute: CarsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

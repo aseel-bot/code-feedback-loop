@@ -5,10 +5,10 @@ import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/button";
 
 type CarsSearch = {
-  brand?: string;
-  model?: string;
-  category?: string;
-  sort?: "newest" | "price-asc" | "price-desc";
+  brand: string | undefined;
+  model: string | undefined;
+  category: string | undefined;
+  sort: "newest" | "price-asc" | "price-desc" | undefined;
 };
 
 export const Route = createFileRoute("/cars/")({
@@ -54,7 +54,7 @@ function CarsPage() {
   if (search.sort === "newest") list = [...list].sort((a, b) => b.year - a.year);
 
   const set = (patch: Partial<CarsSearch>) =>
-    navigate({ search: (prev) => ({ ...prev, ...patch }) });
+    navigate({ search: (prev: CarsSearch) => ({ ...prev, ...patch }) });
 
   return (
     <>
