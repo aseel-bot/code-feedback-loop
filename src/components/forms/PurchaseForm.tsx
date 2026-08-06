@@ -23,17 +23,17 @@ export function PurchaseForm({ variant, defaultCar }: Props) {
     const email = String(data.get("email") || "").trim();
     const company = String(data.get("company") || "").trim();
 
-    if (name.length < 3) next.name = "الرجاء إدخال الاسم بالكامل";
-    if (!/^5\d{8}$/.test(phone)) next.phone = "رقم الجوال يجب أن يبدأ بـ 5 ويتكون من 9 أرقام";
-    if (!car) next.car = "اختر السيارة والموديل";
-    if (!region) next.region = "اختر المنطقة";
+    if (name.length < 3) next["name"] = "الرجاء إدخال الاسم بالكامل";
+    if (!/^5\d{8}$/.test(phone)) next["phone"] = "رقم الجوال يجب أن يبدأ بـ 5 ويتكون من 9 أرقام";
+    if (!car) next["car"] = "اختر السيارة والموديل";
+    if (!region) next["region"] = "اختر المنطقة";
     if (isCompany) {
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) next.email = "بريد إلكتروني غير صحيح";
-      if (company.length < 2) next.company = "أدخل اسم الشركة";
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) next["email"] = "بريد إلكتروني غير صحيح";
+      if (company.length < 2) next["company"] = "أدخل اسم الشركة";
     }
     if (payment === "finance") {
       const salary = Number(data.get("salary") || 0);
-      if (!salary || salary < 3000) next.salary = "أدخل الراتب الشهري (3000 ريال فأكثر)";
+      if (!salary || salary < 3000) next["salary"] = "أدخل الراتب الشهري (3000 ريال فأكثر)";
     }
 
     setErrors(next);
