@@ -10,33 +10,258 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutUsRouteImport } from './routes/about-us'
+import { Route as ContactUsRouteImport } from './routes/contact-us'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as JobsRouteImport } from './routes/jobs'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as PromotionalOffersRouteImport } from './routes/promotional-offers'
+import { Route as ServicesRouteImport } from './routes/services'
+import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
+import { Route as CarsIndexRouteImport } from './routes/cars/index'
+import { Route as CarsSlugRouteImport } from './routes/cars/$slug'
+import { Route as CarsPrintRouteImport } from './routes/cars/print'
+import { Route as OffersIndexRouteImport } from './routes/offers/index'
+import { Route as OffersSlugRouteImport } from './routes/offers/$slug'
+import { Route as PurchaseIndexRouteImport } from './routes/purchase/index'
+import { Route as PurchaseCompaniesRouteImport } from './routes/purchase/companies'
+import { Route as PurchaseCustomersRouteImport } from './routes/purchase/customers'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutUsRoute = AboutUsRouteImport.update({
+  id: '/about-us',
+  path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactUsRoute = ContactUsRouteImport.update({
+  id: '/contact-us',
+  path: '/contact-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobsRoute = JobsRouteImport.update({
+  id: '/jobs',
+  path: '/jobs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PromotionalOffersRoute = PromotionalOffersRouteImport.update({
+  id: '/promotional-offers',
+  path: '/promotional-offers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarsIndexRoute = CarsIndexRouteImport.update({
+  id: '/cars/',
+  path: '/cars/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarsSlugRoute = CarsSlugRouteImport.update({
+  id: '/cars/$slug',
+  path: '/cars/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CarsPrintRoute = CarsPrintRouteImport.update({
+  id: '/cars/print',
+  path: '/cars/print',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OffersIndexRoute = OffersIndexRouteImport.update({
+  id: '/offers/',
+  path: '/offers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OffersSlugRoute = OffersSlugRouteImport.update({
+  id: '/offers/$slug',
+  path: '/offers/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PurchaseIndexRoute = PurchaseIndexRouteImport.update({
+  id: '/purchase/',
+  path: '/purchase/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PurchaseCompaniesRoute = PurchaseCompaniesRouteImport.update({
+  id: '/purchase/companies',
+  path: '/purchase/companies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PurchaseCustomersRoute = PurchaseCustomersRouteImport.update({
+  id: '/purchase/customers',
+  path: '/purchase/customers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/contact-us': typeof ContactUsRoute
+  '/faq': typeof FaqRoute
+  '/jobs': typeof JobsRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/promotional-offers': typeof PromotionalOffersRoute
+  '/services': typeof ServicesRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/cars/$slug': typeof CarsSlugRoute
+  '/cars/print': typeof CarsPrintRoute
+  '/offers/$slug': typeof OffersSlugRoute
+  '/purchase/companies': typeof PurchaseCompaniesRoute
+  '/purchase/customers': typeof PurchaseCustomersRoute
+  '/blog/': typeof BlogIndexRoute
+  '/cars/': typeof CarsIndexRoute
+  '/offers/': typeof OffersIndexRoute
+  '/purchase/': typeof PurchaseIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/contact-us': typeof ContactUsRoute
+  '/faq': typeof FaqRoute
+  '/jobs': typeof JobsRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/promotional-offers': typeof PromotionalOffersRoute
+  '/services': typeof ServicesRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/cars/$slug': typeof CarsSlugRoute
+  '/cars/print': typeof CarsPrintRoute
+  '/offers/$slug': typeof OffersSlugRoute
+  '/purchase/companies': typeof PurchaseCompaniesRoute
+  '/purchase/customers': typeof PurchaseCustomersRoute
+  '/blog': typeof BlogIndexRoute
+  '/cars': typeof CarsIndexRoute
+  '/offers': typeof OffersIndexRoute
+  '/purchase': typeof PurchaseIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/contact-us': typeof ContactUsRoute
+  '/faq': typeof FaqRoute
+  '/jobs': typeof JobsRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/promotional-offers': typeof PromotionalOffersRoute
+  '/services': typeof ServicesRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/cars/$slug': typeof CarsSlugRoute
+  '/cars/print': typeof CarsPrintRoute
+  '/offers/$slug': typeof OffersSlugRoute
+  '/purchase/companies': typeof PurchaseCompaniesRoute
+  '/purchase/customers': typeof PurchaseCustomersRoute
+  '/blog/': typeof BlogIndexRoute
+  '/cars/': typeof CarsIndexRoute
+  '/offers/': typeof OffersIndexRoute
+  '/purchase/': typeof PurchaseIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about-us'
+    | '/contact-us'
+    | '/faq'
+    | '/jobs'
+    | '/privacy-policy'
+    | '/promotional-offers'
+    | '/services'
+    | '/blog/$slug'
+    | '/cars/$slug'
+    | '/cars/print'
+    | '/offers/$slug'
+    | '/purchase/companies'
+    | '/purchase/customers'
+    | '/blog/'
+    | '/cars/'
+    | '/offers/'
+    | '/purchase/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about-us'
+    | '/contact-us'
+    | '/faq'
+    | '/jobs'
+    | '/privacy-policy'
+    | '/promotional-offers'
+    | '/services'
+    | '/blog/$slug'
+    | '/cars/$slug'
+    | '/cars/print'
+    | '/offers/$slug'
+    | '/purchase/companies'
+    | '/purchase/customers'
+    | '/blog'
+    | '/cars'
+    | '/offers'
+    | '/purchase'
+  id:
+    | '__root__'
+    | '/'
+    | '/about-us'
+    | '/contact-us'
+    | '/faq'
+    | '/jobs'
+    | '/privacy-policy'
+    | '/promotional-offers'
+    | '/services'
+    | '/blog/$slug'
+    | '/cars/$slug'
+    | '/cars/print'
+    | '/offers/$slug'
+    | '/purchase/companies'
+    | '/purchase/customers'
+    | '/blog/'
+    | '/cars/'
+    | '/offers/'
+    | '/purchase/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutUsRoute: typeof AboutUsRoute
+  ContactUsRoute: typeof ContactUsRoute
+  FaqRoute: typeof FaqRoute
+  JobsRoute: typeof JobsRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  PromotionalOffersRoute: typeof PromotionalOffersRoute
+  ServicesRoute: typeof ServicesRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  CarsSlugRoute: typeof CarsSlugRoute
+  CarsPrintRoute: typeof CarsPrintRoute
+  OffersSlugRoute: typeof OffersSlugRoute
+  PurchaseCompaniesRoute: typeof PurchaseCompaniesRoute
+  PurchaseCustomersRoute: typeof PurchaseCustomersRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  CarsIndexRoute: typeof CarsIndexRoute
+  OffersIndexRoute: typeof OffersIndexRoute
+  PurchaseIndexRoute: typeof PurchaseIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +273,148 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about-us': {
+      id: '/about-us'
+      path: '/about-us'
+      fullPath: '/about-us'
+      preLoaderRoute: typeof AboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact-us': {
+      id: '/contact-us'
+      path: '/contact-us'
+      fullPath: '/contact-us'
+      preLoaderRoute: typeof ContactUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jobs': {
+      id: '/jobs'
+      path: '/jobs'
+      fullPath: '/jobs'
+      preLoaderRoute: typeof JobsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/promotional-offers': {
+      id: '/promotional-offers'
+      path: '/promotional-offers'
+      fullPath: '/promotional-offers'
+      preLoaderRoute: typeof PromotionalOffersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cars/': {
+      id: '/cars/'
+      path: '/cars'
+      fullPath: '/cars/'
+      preLoaderRoute: typeof CarsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cars/$slug': {
+      id: '/cars/$slug'
+      path: '/cars/$slug'
+      fullPath: '/cars/$slug'
+      preLoaderRoute: typeof CarsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cars/print': {
+      id: '/cars/print'
+      path: '/cars/print'
+      fullPath: '/cars/print'
+      preLoaderRoute: typeof CarsPrintRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/offers/': {
+      id: '/offers/'
+      path: '/offers'
+      fullPath: '/offers/'
+      preLoaderRoute: typeof OffersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/offers/$slug': {
+      id: '/offers/$slug'
+      path: '/offers/$slug'
+      fullPath: '/offers/$slug'
+      preLoaderRoute: typeof OffersSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/purchase/': {
+      id: '/purchase/'
+      path: '/purchase'
+      fullPath: '/purchase/'
+      preLoaderRoute: typeof PurchaseIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/purchase/companies': {
+      id: '/purchase/companies'
+      path: '/purchase/companies'
+      fullPath: '/purchase/companies'
+      preLoaderRoute: typeof PurchaseCompaniesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/purchase/customers': {
+      id: '/purchase/customers'
+      path: '/purchase/customers'
+      fullPath: '/purchase/customers'
+      preLoaderRoute: typeof PurchaseCustomersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutUsRoute: AboutUsRoute,
+  ContactUsRoute: ContactUsRoute,
+  FaqRoute: FaqRoute,
+  JobsRoute: JobsRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  PromotionalOffersRoute: PromotionalOffersRoute,
+  ServicesRoute: ServicesRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  CarsSlugRoute: CarsSlugRoute,
+  CarsPrintRoute: CarsPrintRoute,
+  OffersSlugRoute: OffersSlugRoute,
+  PurchaseCompaniesRoute: PurchaseCompaniesRoute,
+  PurchaseCustomersRoute: PurchaseCustomersRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  CarsIndexRoute: CarsIndexRoute,
+  OffersIndexRoute: OffersIndexRoute,
+  PurchaseIndexRoute: PurchaseIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
