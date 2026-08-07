@@ -29,7 +29,7 @@ function ComparePage() {
   const { remove } = useCompare();
 
   const slugs = (ids ?? "").split(",").filter(Boolean).slice(0, 3);
-  const cars = slugs.map((s) => CARS.find((c) => c.slug === s)).filter(Boolean) as typeof CARS;
+  const cars = slugs.map((s: string) => CARS.find((c) => c.slug === s)).filter(Boolean) as typeof CARS;
 
   const setSlugs = (next: string[]) =>
     navigate({ search: { ids: next.length ? next.join(",") : undefined } });
@@ -125,7 +125,7 @@ function ComparePage() {
                           type="button"
                           onClick={() => {
                             remove(c.slug);
-                            setSlugs(slugs.filter((s) => s !== c.slug));
+                            setSlugs(slugs.filter((s: string) => s !== c.slug));
                           }}
                           className="mt-2 flex items-center gap-1 text-xs text-destructive"
                           aria-label={`إزالة ${c.name} من المقارنة`}
