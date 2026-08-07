@@ -31,7 +31,7 @@ export const Route = createFileRoute("/purchase/customers")({
 });
 
 function CustomersPurchase() {
-  const { car } = Route.useSearch();
+  const { car, down, term, monthly } = Route.useSearch();
 
   return (
     <>
@@ -53,7 +53,13 @@ function CustomersPurchase() {
           </Link>
         </div>
         <div className="rounded-2xl border border-border bg-card p-6 md:p-8">
-          <PurchaseForm variant="customers" defaultCar={car} />
+          <PurchaseForm
+            variant="customers"
+            defaultCar={car}
+            downPayment={down}
+            termMonths={term}
+            estimatedMonthly={monthly}
+          />
         </div>
       </div>
     </>
