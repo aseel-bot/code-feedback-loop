@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-type Props = { variant: "customers" | "companies"; defaultCar?: string };
+type Props = { variant: "customers" | "companies"; defaultCar?: string | undefined };
 
 export function PurchaseForm({ variant, defaultCar }: Props) {
   const isCompany = variant === "companies";

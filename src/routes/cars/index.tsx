@@ -5,10 +5,10 @@ import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/button";
 
 type CarsSearch = {
-  brand: string | undefined;
-  model: string | undefined;
-  category: string | undefined;
-  sort: "newest" | "price-asc" | "price-desc" | undefined;
+  brand?: string | undefined;
+  model?: string | undefined;
+  category?: string | undefined;
+  sort?: "newest" | "price-asc" | "price-desc" | undefined;
 };
 
 export const Route = createFileRoute("/cars/")({
@@ -37,7 +37,7 @@ export const Route = createFileRoute("/cars/")({
 
 function CarsPage() {
   const search = Route.useSearch();
-  const navigate = useNavigate({ from: "/cars" });
+  const navigate = useNavigate({ from: "/cars/" });
 
   const brands = [...new Set(CARS.map((c) => c.brand))];
   const models = [...new Set(CARS.filter((c) => !search.brand || c.brand === search.brand).map((c) => c.model))];

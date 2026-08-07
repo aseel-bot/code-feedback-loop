@@ -3,7 +3,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { PurchaseForm } from "@/components/forms/PurchaseForm";
 
 export const Route = createFileRoute("/purchase/customers")({
-  validateSearch: (search: Record<string, unknown>) => ({
+  validateSearch: (search: Record<string, unknown>): { car?: string | undefined } => ({
     car: typeof search["car"] === "string" ? search["car"] : undefined,
   }),
   head: () => ({
