@@ -20,13 +20,13 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as CarsIndexRouteImport } from './routes/cars/index'
-import { Route as CarsSlugRouteImport } from './routes/cars/$slug'
 import { Route as CarsPrintRouteImport } from './routes/cars/print'
 import { Route as OffersIndexRouteImport } from './routes/offers/index'
 import { Route as OffersSlugRouteImport } from './routes/offers/$slug'
 import { Route as PurchaseIndexRouteImport } from './routes/purchase/index'
 import { Route as PurchaseCompaniesRouteImport } from './routes/purchase/companies'
 import { Route as PurchaseCustomersRouteImport } from './routes/purchase/customers'
+import { Route as CarsSlugIndexRouteImport } from './routes/cars/$slug/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -83,11 +83,6 @@ const CarsIndexRoute = CarsIndexRouteImport.update({
   path: '/cars/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CarsSlugRoute = CarsSlugRouteImport.update({
-  id: '/cars/$slug',
-  path: '/cars/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const CarsPrintRoute = CarsPrintRouteImport.update({
   id: '/cars/print',
   path: '/cars/print',
@@ -118,6 +113,11 @@ const PurchaseCustomersRoute = PurchaseCustomersRouteImport.update({
   path: '/purchase/customers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CarsSlugIndexRoute = CarsSlugIndexRouteImport.update({
+  id: '/cars/$slug/',
+  path: '/cars/$slug/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -129,7 +129,6 @@ export interface FileRoutesByFullPath {
   '/promotional-offers': typeof PromotionalOffersRoute
   '/services': typeof ServicesRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/cars/$slug': typeof CarsSlugRoute
   '/cars/print': typeof CarsPrintRoute
   '/offers/$slug': typeof OffersSlugRoute
   '/purchase/companies': typeof PurchaseCompaniesRoute
@@ -138,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/cars/': typeof CarsIndexRoute
   '/offers/': typeof OffersIndexRoute
   '/purchase/': typeof PurchaseIndexRoute
+  '/cars/$slug/': typeof CarsSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -149,7 +149,6 @@ export interface FileRoutesByTo {
   '/promotional-offers': typeof PromotionalOffersRoute
   '/services': typeof ServicesRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/cars/$slug': typeof CarsSlugRoute
   '/cars/print': typeof CarsPrintRoute
   '/offers/$slug': typeof OffersSlugRoute
   '/purchase/companies': typeof PurchaseCompaniesRoute
@@ -158,6 +157,7 @@ export interface FileRoutesByTo {
   '/cars': typeof CarsIndexRoute
   '/offers': typeof OffersIndexRoute
   '/purchase': typeof PurchaseIndexRoute
+  '/cars/$slug': typeof CarsSlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -170,7 +170,6 @@ export interface FileRoutesById {
   '/promotional-offers': typeof PromotionalOffersRoute
   '/services': typeof ServicesRoute
   '/blog/$slug': typeof BlogSlugRoute
-  '/cars/$slug': typeof CarsSlugRoute
   '/cars/print': typeof CarsPrintRoute
   '/offers/$slug': typeof OffersSlugRoute
   '/purchase/companies': typeof PurchaseCompaniesRoute
@@ -179,6 +178,7 @@ export interface FileRoutesById {
   '/cars/': typeof CarsIndexRoute
   '/offers/': typeof OffersIndexRoute
   '/purchase/': typeof PurchaseIndexRoute
+  '/cars/$slug/': typeof CarsSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -192,7 +192,6 @@ export interface FileRouteTypes {
     | '/promotional-offers'
     | '/services'
     | '/blog/$slug'
-    | '/cars/$slug'
     | '/cars/print'
     | '/offers/$slug'
     | '/purchase/companies'
@@ -201,6 +200,7 @@ export interface FileRouteTypes {
     | '/cars/'
     | '/offers/'
     | '/purchase/'
+    | '/cars/$slug/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -212,7 +212,6 @@ export interface FileRouteTypes {
     | '/promotional-offers'
     | '/services'
     | '/blog/$slug'
-    | '/cars/$slug'
     | '/cars/print'
     | '/offers/$slug'
     | '/purchase/companies'
@@ -221,6 +220,7 @@ export interface FileRouteTypes {
     | '/cars'
     | '/offers'
     | '/purchase'
+    | '/cars/$slug'
   id:
     | '__root__'
     | '/'
@@ -232,7 +232,6 @@ export interface FileRouteTypes {
     | '/promotional-offers'
     | '/services'
     | '/blog/$slug'
-    | '/cars/$slug'
     | '/cars/print'
     | '/offers/$slug'
     | '/purchase/companies'
@@ -241,6 +240,7 @@ export interface FileRouteTypes {
     | '/cars/'
     | '/offers/'
     | '/purchase/'
+    | '/cars/$slug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -253,7 +253,6 @@ export interface RootRouteChildren {
   PromotionalOffersRoute: typeof PromotionalOffersRoute
   ServicesRoute: typeof ServicesRoute
   BlogSlugRoute: typeof BlogSlugRoute
-  CarsSlugRoute: typeof CarsSlugRoute
   CarsPrintRoute: typeof CarsPrintRoute
   OffersSlugRoute: typeof OffersSlugRoute
   PurchaseCompaniesRoute: typeof PurchaseCompaniesRoute
@@ -262,6 +261,7 @@ export interface RootRouteChildren {
   CarsIndexRoute: typeof CarsIndexRoute
   OffersIndexRoute: typeof OffersIndexRoute
   PurchaseIndexRoute: typeof PurchaseIndexRoute
+  CarsSlugIndexRoute: typeof CarsSlugIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -343,13 +343,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CarsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/cars/$slug': {
-      id: '/cars/$slug'
-      path: '/cars/$slug'
-      fullPath: '/cars/$slug'
-      preLoaderRoute: typeof CarsSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/cars/print': {
       id: '/cars/print'
       path: '/cars/print'
@@ -392,6 +385,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PurchaseCustomersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cars/$slug/': {
+      id: '/cars/$slug/'
+      path: '/cars/$slug'
+      fullPath: '/cars/$slug/'
+      preLoaderRoute: typeof CarsSlugIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -405,7 +405,6 @@ const rootRouteChildren: RootRouteChildren = {
   PromotionalOffersRoute: PromotionalOffersRoute,
   ServicesRoute: ServicesRoute,
   BlogSlugRoute: BlogSlugRoute,
-  CarsSlugRoute: CarsSlugRoute,
   CarsPrintRoute: CarsPrintRoute,
   OffersSlugRoute: OffersSlugRoute,
   PurchaseCompaniesRoute: PurchaseCompaniesRoute,
@@ -414,6 +413,7 @@ const rootRouteChildren: RootRouteChildren = {
   CarsIndexRoute: CarsIndexRoute,
   OffersIndexRoute: OffersIndexRoute,
   PurchaseIndexRoute: PurchaseIndexRoute,
+  CarsSlugIndexRoute: CarsSlugIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
