@@ -1,11 +1,29 @@
 import carSedan from "@/assets/car-sedan.jpg";
 import carSuv from "@/assets/car-suv.jpg";
+import galleryInterior from "@/assets/gallery-interior.jpg";
+import galleryRear from "@/assets/gallery-rear.jpg";
+import galleryWheel from "@/assets/gallery-wheel.jpg";
+import galleryEngine from "@/assets/gallery-engine.jpg";
+
+export const GALLERY_EXTRA = [
+  { src: galleryInterior, alt: "المقصورة الداخلية ولوحة القيادة" },
+  { src: galleryRear, alt: "المنظر الخلفي للسيارة" },
+  { src: galleryWheel, alt: "الجنوط والإطارات" },
+  { src: galleryEngine, alt: "حجرة المحرك" },
+];
 
 export const CONTACT = {
   unifiedNumber: "920006652",
+  whatsapp: "966920006652",
   email: "info@adelcars.sa",
   address: "المملكة العربية السعودية — الرياض، طريق الملك عبدالعزيز",
   workHours: "السبت - الخميس: 9:00 صباحًا - 9:00 مساءً",
+  departments: [
+    { name: "المبيعات", phone: "920006652", note: "الاستفسار عن السيارات والأسعار وطلبات الشراء" },
+    { name: "خدمة العملاء والشكاوى", phone: "920006653", note: "متابعة الطلبات وتقديم الشكاوى" },
+    { name: "الضمان والصيانة", phone: "920006654", note: "الضمان الممتد ومواعيد الصيانة" },
+    { name: "فرع الرياض", phone: "0112345678", note: "طريق الملك عبدالعزيز — الرياض" },
+  ],
   social: {
     tiktok: "https://www.tiktok.com/@adel.cars",
     instagram: "https://www.instagram.com/adel.cars",
@@ -14,6 +32,7 @@ export const CONTACT = {
     linkedin: "https://www.linkedin.com/company/adel-cars",
   },
 };
+
 
 export const REGIONS = [
   "الرياض",
