@@ -15,6 +15,8 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { Toaster } from "@/components/ui/sonner";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { MotionConfig } from "framer-motion";
+import { PageTransition, RouteProgress } from "@/components/motion/PageTransition";
 
 function NotFoundComponent() {
   return (
@@ -130,13 +132,18 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <div className="flex min-h-screen flex-col">
-        <SiteHeader />
-        <main className="flex-1">
-          <Outlet />
-        </main>
-        <SiteFooter />
-      </div>
+      <MotionConfig reducedMotion="user">
+        <RouteProgress />
+        <div className="flex min-h-screen flex-col">
+          <SiteHeader />
+          <main className="flex-1">
+            <PageTransition>
+              <Outlet />
+            </PageTransition>
+          </main>
+          <SiteFooter />
+        </div>
+      </MotionConfig>
       <WhatsAppFloat />
       <Toaster position="top-center" richColors />
 
