@@ -1,19 +1,29 @@
 import { Link } from "@tanstack/react-router";
 import { Fuel, Users, Cog, CircleDot } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import type { Car } from "@/data/site";
 import { Button } from "@/components/ui/button";
+import { T } from "@/lib/motion";
 
 export function CarCard({ car }: { car: Car }) {
+  const reduce = useReducedMotion();
+
   return (
-    <article className="group overflow-hidden rounded-xl border border-border bg-card shadow-[var(--shadow-card)] transition hover:-translate-y-1 hover:border-accent/50">
-      <Link to="/cars/$slug" params={{ slug: car.slug }} className="relative block">
+    <motion.article
+      layout
+      className="group overflow-hidden rounded-xl border border-border bg-card shadow-[var(--shadow-card)] transition-[border-color,box-shadow] hover:border-accent/50 hover:shadow-[var(--shadow-elevated,0_18px_40px_-18px_rgba(0,0,0,0.45))]"
+      {...(reduce
+        ? {}
+        : { whileHover: { y: -6, transition: T.base }, transition: T.base })}
+    >
+      <Link to="/cars/$slug" params={{ slug: car.slug }} className="relative block overflow-hidden">
         <img
           src={car.image}
           alt={car.name}
           loading="lazy"
           width={1200}
           height={800}
-          className="h-48 w-full object-cover transition duration-500 group-hover:scale-105"
+          className="h-48 w-full object-cover transition-transform duration-500 ease-out md:group-hover:scale-105"
         />
         <div className="absolute start-3 top-3 flex flex-wrap gap-1.5">
           {car.badges.map((b) => (
@@ -29,7 +39,7 @@ export function CarCard({ car }: { car: Car }) {
 
       <div className="p-4">
         <Link to="/cars/$slug" params={{ slug: car.slug }}>
-          <h3 className="font-display text-base font-bold transition group-hover:text-accent">
+          <h3 className="font-display text-base font-bold transition-colors group-hover:text-accent">
             {car.name}
           </h3>
         </Link>
@@ -71,11 +81,13 @@ export function CarCard({ car }: { car: Car }) {
         </div>
 
         <div className="mt-4 flex items-center gap-2">
-          <Button asChild size="sm" className="flex-1">
-            <Link to="/purchase/customers" search={{ car: car.name }}>
-              {car.price ? "طلب شراء" : "احجز سيارتك الآن"}
-            </Link>
-          </Button>
+          <motion.div className="flex-1" {...(reduce ? {} : { whileTap: { scale: 0.96 } })}>
+            <Button asChild size="sm" className="w-full">
+              <Link to="/purchase/customers" search={{ car: car.name }}>
+                {car.price ? "طلب شراء" : "احجز سيارتك الآن"}
+              </Link>
+            </Button>
+          </motion.div>
           <Button asChild size="sm" variant="outline">
             <Link to="/cars/$slug" params={{ slug: car.slug }}>
               المزيد
@@ -83,6 +95,6 @@ export function CarCard({ car }: { car: Car }) {
           </Button>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }
