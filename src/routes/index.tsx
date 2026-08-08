@@ -15,6 +15,9 @@ import purchaseImg from "@/assets/purchase.jpg";
 import { BRANDS, CARS, OFFERS } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { CarCard } from "@/components/cars/CarCard";
+import { motion } from "framer-motion";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { T, containerStagger, fadeUp } from "@/lib/motion";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -60,29 +63,45 @@ function Home() {
           className="absolute inset-0 size-full object-cover"
         />
         <div className="hero-overlay absolute inset-0" />
-        <div className="relative mx-auto max-w-7xl px-4 py-24 md:py-32">
-          <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-bold text-accent">
+        <motion.div
+          className="relative mx-auto max-w-7xl px-4 py-24 md:py-32"
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.span
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: T.hero } }} className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-bold text-accent">
             <BadgeCheck className="size-4" /> موزع معتمد — شركة عادل للسيارات
-          </span>
-          <h1 className="mt-6 max-w-3xl font-display text-4xl leading-tight md:text-6xl">
+          </motion.span>
+          <motion.h1
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: T.hero } }}
+            className="mt-6 max-w-3xl font-display text-4xl leading-tight md:text-6xl">
             إختيارك <span className="text-gradient-gold">الذهبي</span> لإمتلاك سيارة أحلامك في
             السعودية
-          </h1>
-          <p className="mt-4 max-w-xl text-base opacity-80 md:text-lg">
+          </motion.h1>
+          <motion.p
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: T.hero } }}
+            className="mt-4 max-w-xl text-base opacity-80 md:text-lg">
             اكتشف، قارن، امتلك وانطلق بسهولة!
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          </motion.p>
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: T.hero } }}
+            className="mt-8 flex flex-wrap gap-3"
+          >
             <Button asChild size="lg">
               <Link to="/cars">تصفح السيارات</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-white/30 bg-white/5">
               <Link to="/purchase">طلب شراء</Link>
             </Button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         <div className="relative mx-auto -mb-12 max-w-7xl px-4">
-          <div className="rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0, transition: { ...T.hero, delay: 0.3 } }}
+            className="rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)]">
             <h2 className="mb-4 font-display text-sm text-muted-foreground">بحث سريع</h2>
             <div className="grid gap-3 md:grid-cols-4">
               <select
@@ -141,20 +160,20 @@ function Home() {
                 </Link>
               </Button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       <section className="mx-auto mt-24 max-w-7xl px-4">
-        <div className="grid gap-4 md:grid-cols-4">
+        <RevealGroup className="grid gap-4 md:grid-cols-4">
           {FEATURES.map((f) => (
-            <div key={f.title} className="rounded-xl border border-border bg-card p-5">
+            <RevealItem key={f.title} className="rounded-xl border border-border bg-card p-5">
               <f.icon className="size-7 text-accent" />
               <h3 className="mt-3 text-base">{f.title}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{f.body}</p>
-            </div>
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </section>
 
       <section className="mx-auto mt-20 max-w-7xl px-4">
@@ -167,15 +186,17 @@ function Home() {
             كل السيارات <ArrowLeft className="size-4" />
           </Link>
         </div>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <RevealGroup className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {CARS.slice(0, 3).map((car) => (
-            <CarCard key={car.slug} car={car} />
+            <RevealItem key={car.slug}>
+              <CarCard car={car} />
+            </RevealItem>
           ))}
-        </div>
+        </RevealGroup>
       </section>
 
       <section className="mx-auto mt-20 max-w-7xl px-4">
-        <div className="grid items-center gap-10 rounded-2xl border border-border bg-card p-6 md:grid-cols-2 md:p-10">
+        <Reveal variant="slow" className="grid items-center gap-10 rounded-2xl border border-border bg-card p-6 md:grid-cols-2 md:p-10">
           <div>
             <p className="text-xs font-bold tracking-widest text-accent">إختر سيارتك</p>
             <h2 className="mt-2 font-display text-2xl md:text-3xl">
@@ -206,7 +227,7 @@ function Home() {
             height={900}
             className="rounded-xl object-cover"
           />
-        </div>
+        </Reveal>
       </section>
 
       <section className="mx-auto mt-20 max-w-7xl px-4">
@@ -216,14 +237,23 @@ function Home() {
             كل العروض <ArrowLeft className="size-4" />
           </Link>
         </div>
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <motion.div
+          className="mt-8 grid gap-6 md:grid-cols-3"
+          variants={containerStagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {OFFERS.map((o) => (
+            <motion.div key={o.slug} variants={fadeUp} className="offer-glow rounded-xl">
             <Link
-              key={o.slug}
               to="/offers/$slug"
               params={{ slug: o.slug }}
-              className="group overflow-hidden rounded-xl border border-border bg-card"
+              className="group relative block overflow-hidden rounded-xl border border-border bg-card"
             >
+              <span className="absolute end-3 top-3 z-10 rounded-full bg-accent px-2.5 py-1 text-[11px] font-bold text-accent-foreground">
+                عرض
+              </span>
               <img
                 src={o.image}
                 alt={o.title}
@@ -237,21 +267,28 @@ function Home() {
                 <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{o.subtitle}</p>
               </div>
             </Link>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       <section className="mx-auto mt-20 max-w-7xl px-4">
         <h2 className="text-center font-display text-2xl">البنوك والشركات المعتمدة</h2>
-        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-          {["الراجحي", "الأهلي", "الرياض", "البلاد", "الإنماء", "اليسر"].map((b) => (
-            <div
-              key={b}
-              className="grid h-20 place-items-center rounded-xl border border-border bg-card text-sm font-bold text-muted-foreground"
-            >
-              {b}
-            </div>
-          ))}
+        <div className="marquee mt-8">
+          <div className="marquee-track">
+            {[0, 1].map((dup) => (
+              <div key={dup} className="marquee-group" aria-hidden={dup === 1}>
+                {["الراجحي", "الأهلي", "الرياض", "البلاد", "الإنماء", "اليسر"].map((b) => (
+                  <div
+                    key={b}
+                    className="grid h-20 w-40 shrink-0 place-items-center rounded-xl border border-border bg-card text-sm font-bold text-muted-foreground"
+                  >
+                    {b}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </>

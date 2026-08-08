@@ -1,3 +1,4 @@
+import { ReadingProgress } from "@/components/motion/ReadingProgress";
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { POSTS } from "@/data/site";
 import { PageHero } from "@/components/layout/PageHero";
@@ -29,6 +30,7 @@ function Post() {
         title={post.title}
         crumbs={[{ label: "المدونة", to: "/blog" }, { label: post.title }]}
       />
+      <ReadingProgress />
       <article className="mx-auto max-w-3xl px-4 py-12">
         <img
           src={post.image}

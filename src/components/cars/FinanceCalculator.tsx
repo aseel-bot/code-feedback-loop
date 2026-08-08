@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { AnimatedNumber } from "@/components/motion/AnimatedNumber";
 
 const ANNUAL_RATE = 0.045;
 
@@ -57,7 +58,7 @@ export function FinanceCalculator({ price, carName }: { price: number; carName: 
       <div className="mt-6 rounded-xl bg-muted p-4 text-center">
         <p className="text-sm text-muted-foreground">القسط الشهري التقديري</p>
         <p className="mt-1 font-display text-3xl font-black">
-          {monthly.toLocaleString("en-US")}
+          <AnimatedNumber value={monthly} />
           <span className="ms-2 text-sm font-medium text-muted-foreground">ريال</span>
         </p>
       </div>

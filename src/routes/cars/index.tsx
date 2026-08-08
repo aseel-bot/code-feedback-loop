@@ -3,6 +3,8 @@ import { CARS } from "@/data/site";
 import { CarCard } from "@/components/cars/CarCard";
 import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/button";
+import { AnimatePresence, motion } from "framer-motion";
+import { T, containerStagger, fadeUp, fadeScale } from "@/lib/motion";
 
 type CarsSearch = {
   brand?: string | undefined;
@@ -138,20 +140,37 @@ function CarsPage() {
           </span>
         </div>
 
+        <AnimatePresence mode="wait" initial={false}>
         {list.length ? (
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <motion.div
+            key={`${search.brand ?? ""}|${search.model ?? ""}|${search.category ?? ""}|${search.sort ?? ""}`}
+            variants={containerStagger}
+            initial="hidden"
+            animate="show"
+            exit={{ opacity: 0, transition: { duration: 0.15 } }}
+            className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          >
             {list.map((car) => (
-              <CarCard key={car.slug} car={car} />
+              <motion.div key={car.slug} variants={fadeUp} transition={T.base}>
+                <CarCard car={car} />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         ) : (
-          <div className="mt-12 rounded-xl border border-dashed border-border p-12 text-center">
+          <motion.div
+            key="empty"
+            variants={fadeScale}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            className="mt-12 rounded-xl border border-dashed border-border p-12 text-center">
             <p className="text-muted-foreground">لا توجد سيارات مطابقة للفلاتر المختارة.</p>
             <Link to="/cars" search={{}} className="mt-3 inline-block text-sm font-bold text-accent">
               عرض كل السيارات
             </Link>
-          </div>
+          </motion.div>
         )}
+        </AnimatePresence>
       </div>
     </>
   );

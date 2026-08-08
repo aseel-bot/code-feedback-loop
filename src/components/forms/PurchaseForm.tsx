@@ -5,6 +5,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { Check, Loader2 } from "lucide-react";
+import { T } from "@/lib/motion";
 
 type Props = {
   variant: "customers" | "companies";
@@ -28,6 +31,9 @@ export function PurchaseForm({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sending, setSending] = useState(false);
   const [reference, setReference] = useState<string | null>(null);
+  const [shake, setShake] = useState(0);
+  const [justSucceeded, setJustSucceeded] = useState(false);
+  const reduce = useReducedMotion();
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -58,7 +64,10 @@ export function PurchaseForm({
     }
 
     setErrors(next);
-    if (Object.keys(next).length) return;
+    if (Object.keys(next).length) {
+      setShake((n) => n + 1);
+      return;
+    }
 
     setSending(true);
     const { data: row, error } = await supabase
@@ -85,12 +94,15 @@ export function PurchaseForm({
     setSending(false);
 
     if (error || !row) {
+      setShake((n) => n + 1);
       toast.error("تعذّر إرسال الطلب", {
         description: `يرجى المحاولة مرة أخرى أو الاتصال بنا مباشرة على ${CONTACT.unifiedNumber}.`,
       });
       return;
     }
 
+    setJustSucceeded(true);
+    setTimeout(() => setJustSucceeded(false), 900);
     setReference(row.reference);
     toast.success("تم استلام طلبك بنجاح", {
       description: `رقمك المرجعي ${row.reference} — سيتواصل معك فريق المبيعات خلال 24 ساعة عمل.`,
@@ -101,14 +113,24 @@ export function PurchaseForm({
 
   const err = (k: string) =>
     errors[k] ? (
-      <p className="mt-1 text-xs text-destructive" role="alert">
+      <motion.p
+        className="mt-1 overflow-hidden text-xs text-destructive"
+        role="alert"
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: "auto", transition: T.base }}
+      >
         {errors[k]}
-      </p>
+      </motion.p>
     ) : null;
 
   if (reference) {
     return (
-      <div className="text-center" role="status">
+      <motion.div
+        className="text-center"
+        role="status"
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1, transition: T.base }}
+      >
         <h2 className="text-xl font-bold">تم استلام طلبك</h2>
         <p className="mt-3 text-sm text-muted-foreground">رقمك المرجعي</p>
         <p className="mt-1 font-display text-3xl font-black text-accent" dir="ltr">
@@ -124,7 +146,7 @@ export function PurchaseForm({
         <Button variant="outline" className="mt-6" onClick={() => setReference(null)}>
           إرسال طلب آخر
         </Button>
-      </div>
+      </motion.div>
     );
   }
 
@@ -220,20 +242,36 @@ export function PurchaseForm({
               type="button"
               aria-pressed={payment === o.v}
               onClick={() => setPayment(o.v)}
-              className={`rounded-lg border px-4 py-3 text-sm font-bold transition ${
-                payment === o.v
-                  ? "border-accent bg-accent text-accent-foreground"
-                  : "border-border hover:border-accent/60"
+              className={`relative rounded-lg border px-4 py-3 text-sm font-bold transition-colors ${
+                payment === o.v ? "border-accent" : "border-border hover:border-accent/60"
               }`}
             >
-              {o.l}
+              {payment === o.v && (
+                <motion.span
+                  layoutId="payment-pill"
+                  transition={T.base}
+                  className="absolute inset-0 rounded-lg bg-accent"
+                />
+              )}
+              <span
+                className={`relative ${payment === o.v ? "text-accent-foreground" : ""}`}
+              >
+                {o.l}
+              </span>
             </button>
           ))}
         </div>
       </div>
 
+      <AnimatePresence initial={false}>
       {payment === "finance" && (
-        <>
+        <motion.div
+          key="finance-fields"
+          className="grid gap-5 overflow-hidden md:col-span-2 md:grid-cols-2"
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1, transition: T.base }}
+          exit={{ height: 0, opacity: 0, transition: T.base }}
+        >
           <div>
             <Label htmlFor="salary">الراتب الشهري (ريال) — اختياري</Label>
             <Input
@@ -254,8 +292,9 @@ export function PurchaseForm({
               placeholder="القطاع الحكومي / الخاص"
             />
           </div>
-        </>
+        </motion.div>
       )}
+      </AnimatePresence>
 
       {(downPayment != null || termMonths != null) && (
         <p className="md:col-span-2 rounded-lg bg-muted p-3 text-sm">
@@ -285,9 +324,30 @@ export function PurchaseForm({
       </div>
 
       <div className="md:col-span-2">
-        <Button type="submit" size="lg" className="w-full" disabled={sending}>
-          {sending ? "جارٍ الإرسال..." : "إرسال الطلب"}
-        </Button>
+        <motion.div
+          animate={
+            reduce || !shake
+              ? {}
+              : { x: [0, -6, 6, -4, 4, 0], transition: { duration: 0.4 } }
+          }
+          key={`shake-${shake}`}
+        >
+          <Button type="submit" size="lg" className="w-full" disabled={sending}>
+            <motion.span
+              className="flex items-center justify-center gap-2"
+              animate={justSucceeded && !reduce ? { scale: [1, 1.1, 1] } : { scale: 1 }}
+              transition={{ duration: 0.35 }}
+            >
+              {sending ? (
+                <Loader2 className="size-5 animate-spin" aria-label="جارٍ الإرسال" />
+              ) : justSucceeded ? (
+                <Check className="size-5" aria-label="تم الإرسال" />
+              ) : (
+                "إرسال الطلب"
+              )}
+            </motion.span>
+          </Button>
+        </motion.div>
         <p className="mt-3 text-center text-xs text-muted-foreground">
           بالضغط على إرسال أنت توافق على أن يتواصل معك فريق المبيعات هاتفيًا.
         </p>

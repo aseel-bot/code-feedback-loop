@@ -143,3 +143,104 @@
     oklch(0.16 0.02 260 / 0.92)
   );
 }
+
+/* ===== طبقة الحركة: Marquee, Shimmer, Skeleton ===== */
+@layer components {
+  .marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to left, transparent, black 8%, black 92%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 0.75rem;
+    animation: marquee-scroll 32s linear infinite;
+    will-change: transform;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  .marquee-group {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .offer-glow {
+    position: relative;
+  }
+  .offer-glow::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(
+      110deg,
+      transparent 35%,
+      oklch(0.85 0.12 92 / 0.22) 50%,
+      transparent 65%
+    );
+    background-size: 250% 100%;
+    animation: offer-shimmer 4s ease-in-out infinite;
+  }
+
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--muted);
+  }
+  .skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--foreground) 8%, transparent),
+      transparent
+    );
+    animation: skeleton-shimmer 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes offer-shimmer {
+  0%,
+  100% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: -50% 0;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .offer-glow::after,
+  .skeleton::after {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
