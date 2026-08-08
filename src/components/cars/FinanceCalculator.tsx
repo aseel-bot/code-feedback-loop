@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { AnimatedNumber } from "@/components/motion/AnimatedNumber";
 
 const ANNUAL_RATE = 0.045;
 
