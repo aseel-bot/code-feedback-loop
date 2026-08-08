@@ -134,7 +134,7 @@ export function CarGallery({ images }: Props) {
               <X className="size-5" />
             </button>
             <motion.img
-              layoutId={reduce ? undefined : "car-gallery-image"}
+              {...(reduce ? {} : { layoutId: "car-gallery-image" })}
               transition={T.base}
               src={current.src}
               alt={current.alt}
