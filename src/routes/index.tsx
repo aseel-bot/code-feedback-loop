@@ -165,9 +165,9 @@ function Home() {
             </div>
           </motion.div>
         </div>
-      </section>
 
-      <section className="mx-auto mt-24 max-w-7xl px-4">
+      <section className="mx-auto mt-16 max-w-7xl px-4 md:mt-24">
+
         <RevealGroup className="grid gap-4 md:grid-cols-4">
           {FEATURES.map((f) => (
             <RevealItem key={f.title} className="rounded-xl border border-border bg-card p-5">
