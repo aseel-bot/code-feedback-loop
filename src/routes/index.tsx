@@ -97,13 +97,16 @@ function Home() {
           </motion.div>
         </motion.div>
 
-        <div className="relative mx-auto -mb-12 max-w-7xl px-4">
+      </section>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 md:-mt-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0, transition: { ...T.hero, delay: 0.3 } }}
-            className="rounded-2xl border border-border bg-card p-5 shadow-[var(--shadow-card)]">
+            className="mt-6 rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-card)] md:mt-0 md:p-5">
             <h2 className="mb-4 font-display text-sm text-muted-foreground">بحث سريع</h2>
-            <div className="grid gap-3 md:grid-cols-4">
+            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
+
               <select
                 aria-label="الماركة"
                 value={brand}
