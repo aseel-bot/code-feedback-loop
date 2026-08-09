@@ -150,7 +150,7 @@ function Home() {
                   </option>
                 ))}
               </select>
-              <Button asChild size="lg" className="h-11">
+              <Button asChild size="lg" className="h-11 sm:col-span-2 md:col-span-1">
                 <Link
                   to="/cars"
                   search={{
