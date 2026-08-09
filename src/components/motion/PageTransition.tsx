@@ -11,18 +11,16 @@ export function PageTransition({ children }: { children: ReactNode }) {
   if (reduce) return <>{children}</>;
 
   return (
-    <AnimatePresence mode="wait" initial={false}>
-      <motion.div
-        key={pathname}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0, transition: T.base }}
-        exit={{ opacity: 0, transition: { duration: 0.15 } }}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      key={pathname}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0, transition: T.base }}
+    >
+      {children}
+    </motion.div>
   );
 }
+
 
 /** شريط تحميل رفيع أعلى الصفحة أثناء الانتقالات الأطول من 300ms */
 export function RouteProgress() {
