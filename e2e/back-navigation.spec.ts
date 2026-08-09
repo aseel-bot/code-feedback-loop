@@ -51,7 +51,6 @@ test.describe("الرجوع من كل مسار إلى الصفحة الرئيس�
       await page.goto("/", { waitUntil: "domcontentloaded" });
       await expectPageAlive(page);
 
-      await page.evaluate((p) => window.history.pushState({}, "", p), path);
       await page.goto(path, { waitUntil: "domcontentloaded" });
       await expectPageAlive(page);
 
