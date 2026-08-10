@@ -480,3 +480,19 @@ export const BRAND_WORDMARKS: Record<string, string> = {
   "جيلي": "GEELY",
   "إم جي": "MG",
 };
+
+/** معرفات شعارات الماركات (simple-icons) — الماركات غير المتوفرة تعرض اسمًا مكتوبًا */
+export const BRAND_ICONS: Record<string, string> = {
+  "تويوتا": "toyota",
+  "نيسان": "nissan",
+  "هوندا": "honda",
+  "كيا": "kia",
+  "هيونداي": "hyundai",
+  "شيفروليه": "chevrolet",
+  "فورد": "ford",
+  "بي إم دبليو": "bmw",
+  "أودي": "audi",
+  "جيب": "jeep",
+  "مازدا": "mazda",
+  "إم جي": "mg",
+};
