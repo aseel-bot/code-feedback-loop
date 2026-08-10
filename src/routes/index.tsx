@@ -46,11 +46,7 @@ const FEATURES = [
 ];
 
 function Home() {
-  const [brand, setBrand] = useState("");
-  const [model, setModel] = useState("");
-  const [category, setCategory] = useState("");
 
-  const models = CARS.filter((c) => !brand || c.brand === brand).map((c) => c.model);
 
   return (
     <>
