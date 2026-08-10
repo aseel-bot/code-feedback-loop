@@ -80,7 +80,7 @@ describe("PageTransition", () => {
       await renderRouter(router);
 
       await act(async () => {
-        await router.navigate({ to: path });
+        await router.navigate({ to: path as never });
       });
       await waitFor(() =>
         expect(screen.getByTestId("page")).toHaveTextContent(`page:${path}`),
