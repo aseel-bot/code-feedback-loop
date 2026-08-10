@@ -95,76 +95,32 @@ function Home() {
               <Link to="/purchase">طلب شراء</Link>
             </Button>
           </motion.div>
+
+          <motion.dl
+            variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: T.hero } }}
+            className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-white/15 pt-6"
+          >
+            {[
+              { k: "+40", v: "علامة تجارية" },
+              { k: "+12", v: "بنك وشركة تمويل" },
+              { k: "13", v: "منطقة توصيل" },
+            ].map((s) => (
+              <div key={s.v}>
+                <dt className="font-display text-2xl text-accent md:text-3xl">{s.k}</dt>
+                <dd className="mt-1 text-xs opacity-70 md:text-sm">{s.v}</dd>
+              </div>
+            ))}
+          </motion.dl>
         </motion.div>
 
       </section>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 md:-mt-12">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0, transition: { ...T.hero, delay: 0.3 } }}
-            className="mt-6 rounded-2xl border border-border bg-card p-4 shadow-[var(--shadow-card)] md:mt-0 md:p-5">
-            <h2 className="mb-4 font-display text-sm text-muted-foreground">بحث سريع</h2>
-            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-4">
+        <QuickSearch />
+      </div>
 
-              <select
-                aria-label="الماركة"
-                value={brand}
-                onChange={(e) => {
-                  setBrand(e.target.value);
-                  setModel("");
-                }}
-                className="h-11 rounded-md border border-input bg-background px-3 text-sm text-foreground"
-              >
-                <option value="">الماركة</option>
-                {BRANDS.map((b) => (
-                  <option key={b} value={b}>
-                    {b}
-                  </option>
-                ))}
-              </select>
-              <select
-                aria-label="الموديل"
-                value={model}
-                onChange={(e) => setModel(e.target.value)}
-                disabled={!brand}
-                className="h-11 rounded-md border border-input bg-background px-3 text-sm text-foreground disabled:opacity-50"
-              >
-                <option value="">الموديل</option>
-                {[...new Set(models)].map((m) => (
-                  <option key={m} value={m}>
-                    {m}
-                  </option>
-                ))}
-              </select>
-              <select
-                aria-label="الفئة"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className="h-11 rounded-md border border-input bg-background px-3 text-sm text-foreground"
-              >
-                <option value="">الفئة</option>
-                {["سيدان", "دفع رباعي", "كروس أوفر", "بيك أب"].map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
-              <Button asChild size="lg" className="h-11 sm:col-span-2 md:col-span-1">
-                <Link
-                  to="/cars"
-                  search={{
-                    brand: brand || undefined,
-                    model: model || undefined,
-                    category: category || undefined,
-                  }}
-                >
-                  <Search className="size-4" /> ابحث في سيارات الوكالات
-                </Link>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
+      <BrandStrip />
+
 
       <section className="mx-auto mt-16 max-w-7xl px-4 md:mt-24">
 
