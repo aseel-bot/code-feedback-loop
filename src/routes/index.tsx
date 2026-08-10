@@ -1,20 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
 import {
   ArrowLeft,
   BadgeCheck,
   Building2,
   Landmark,
-  Search,
   ShieldCheck,
   Truck,
   User,
 } from "lucide-react";
 import heroCar from "@/assets/hero-car.jpg";
 import purchaseImg from "@/assets/purchase.jpg";
-import { BRANDS, CARS, OFFERS } from "@/data/site";
+import { CARS, OFFERS } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { CarCard } from "@/components/cars/CarCard";
+import { QuickSearch } from "@/components/home/QuickSearch";
+import { BrandStrip } from "@/components/home/BrandStrip";
 import { motion } from "framer-motion";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { T, containerStagger, fadeUp } from "@/lib/motion";
