@@ -15,7 +15,8 @@ import { Button } from "@/components/ui/button";
 import { CarCard } from "@/components/cars/CarCard";
 import { QuickSearch } from "@/components/home/QuickSearch";
 import { BrandStrip } from "@/components/home/BrandStrip";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { T, containerStagger, fadeUp } from "@/lib/motion";
 
