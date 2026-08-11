@@ -110,12 +110,15 @@ function Home() {
             className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-white/15 pt-6"
           >
             {[
-              { k: "+40", v: "علامة تجارية" },
-              { k: "+12", v: "بنك وشركة تمويل" },
-              { k: "13", v: "منطقة توصيل" },
+              { n: 40, prefix: "+", v: "علامة تجارية" },
+              { n: 12, prefix: "+", v: "بنك وشركة تمويل" },
+              { n: 13, prefix: "", v: "منطقة توصيل" },
             ].map((s) => (
               <div key={s.v}>
-                <dt className="font-display text-2xl text-accent md:text-3xl">{s.k}</dt>
+                <dt className="font-display text-2xl text-accent md:text-3xl">
+                  {s.prefix}
+                  <AnimatedNumber value={s.n} duration={1100} />
+                </dt>
                 <dd className="mt-1 text-xs opacity-70 md:text-sm">{s.v}</dd>
               </div>
             ))}
