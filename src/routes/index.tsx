@@ -118,7 +118,7 @@ function Home() {
               <div key={s.v}>
                 <dt className="font-display text-2xl text-accent md:text-3xl">
                   {s.prefix}
-                  <AnimatedNumber value={s.n} duration={1100} />
+                  <AnimatedNumber value={s.n} from={0} duration={1100} />
                 </dt>
                 <dd className="mt-1 text-xs opacity-70 md:text-sm">{s.v}</dd>
               </div>
