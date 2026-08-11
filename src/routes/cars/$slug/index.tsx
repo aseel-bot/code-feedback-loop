@@ -7,6 +7,7 @@ import { CarCard } from "@/components/cars/CarCard";
 import { CarGallery } from "@/components/cars/CarGallery";
 import { FinanceCalculator } from "@/components/cars/FinanceCalculator";
 import { useCompare } from "@/hooks/useCompare";
+import { StickyBookBar } from "@/components/motion/StickyBookBar";
 
 export const Route = createFileRoute("/cars/$slug/")({
   loader: ({ params }) => {
@@ -219,6 +220,8 @@ function CarDetails() {
           </div>
         </section>
       </div>
+
+      <StickyBookBar carName={car.name} price={car.price ?? undefined} monthly={car.monthly ?? undefined} />
     </>
   );
 }
