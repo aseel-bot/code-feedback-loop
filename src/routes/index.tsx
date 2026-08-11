@@ -66,7 +66,7 @@ function Home() {
           alt="سيارة دفع رباعي فاخرة على طريق صحراوي وقت الغروب"
           width={1600}
           height={1008}
-          style={reduce ? undefined : { y: imgY, scale: imgScale }}
+          style={reduce ? {} : { y: imgY, scale: imgScale }}
           className="absolute inset-0 size-full object-cover"
         />
         <div className="hero-overlay absolute inset-0" />
