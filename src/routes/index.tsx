@@ -76,6 +76,7 @@ function Home() {
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }}
           initial="hidden"
           animate="show"
+          style={reduce ? {} : { y: contentY, opacity: contentOpacity }}
         >
           <motion.span
             variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: T.hero } }} className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-bold text-accent">
