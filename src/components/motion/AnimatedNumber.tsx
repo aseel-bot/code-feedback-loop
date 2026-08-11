@@ -5,15 +5,18 @@ import { useReducedMotion } from "framer-motion";
 export function AnimatedNumber({
   value,
   duration = 400,
+  from,
   className,
 }: {
   value: number;
   duration?: number;
+  /** قيمة بداية اختيارية لعدّاد تصاعدي عند أول ظهور */
+  from?: number;
   className?: string;
 }) {
   const reduce = useReducedMotion();
-  const [display, setDisplay] = useState(value);
-  const fromRef = useRef(value);
+  const [display, setDisplay] = useState(from ?? value);
+  const fromRef = useRef(from ?? value);
   const rafRef = useRef<number | null>(null);
 
   useEffect(() => {

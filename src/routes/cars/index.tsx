@@ -5,6 +5,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 import { T, containerStagger, fadeUp, fadeScale } from "@/lib/motion";
+import { AnimatedNumber } from "@/components/motion/AnimatedNumber";
 
 type CarsSearch = {
   brand?: string | undefined;
@@ -136,7 +137,7 @@ function CarsPage() {
             إعادة تعيين
           </Button>
           <span className="ms-auto text-sm text-muted-foreground">
-            النتائج: {list.length} سيارة
+            النتائج: <AnimatedNumber value={list.length} className="font-bold text-foreground" /> سيارة
           </span>
         </div>
 

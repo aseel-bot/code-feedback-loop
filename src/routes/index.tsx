@@ -15,7 +15,9 @@ import { Button } from "@/components/ui/button";
 import { CarCard } from "@/components/cars/CarCard";
 import { QuickSearch } from "@/components/home/QuickSearch";
 import { BrandStrip } from "@/components/home/BrandStrip";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { AnimatedNumber } from "@/components/motion/AnimatedNumber";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { T, containerStagger, fadeUp } from "@/lib/motion";
 
@@ -46,24 +48,36 @@ const FEATURES = [
 ];
 
 function Home() {
-
+  const reduce = useReducedMotion();
+  const heroRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1.06, 1.16]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
 
   return (
     <>
-      <section className="surface-ink relative isolate overflow-hidden">
-        <img
+      <section ref={heroRef} className="surface-ink relative isolate overflow-hidden">
+        <motion.img
           src={heroCar}
           alt="سيارة دفع رباعي فاخرة على طريق صحراوي وقت الغروب"
           width={1600}
           height={1008}
+          style={reduce ? {} : { y: imgY, scale: imgScale }}
           className="absolute inset-0 size-full object-cover"
         />
         <div className="hero-overlay absolute inset-0" />
+
         <motion.div
           className="relative mx-auto max-w-7xl px-4 py-24 md:py-32"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }}
           initial="hidden"
           animate="show"
+          style={reduce ? {} : { y: contentY, opacity: contentOpacity }}
         >
           <motion.span
             variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: T.hero } }} className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-bold text-accent">
@@ -97,12 +111,15 @@ function Home() {
             className="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-white/15 pt-6"
           >
             {[
-              { k: "+40", v: "علامة تجارية" },
-              { k: "+12", v: "بنك وشركة تمويل" },
-              { k: "13", v: "منطقة توصيل" },
+              { n: 40, prefix: "+", v: "علامة تجارية" },
+              { n: 12, prefix: "+", v: "بنك وشركة تمويل" },
+              { n: 13, prefix: "", v: "منطقة توصيل" },
             ].map((s) => (
               <div key={s.v}>
-                <dt className="font-display text-2xl text-accent md:text-3xl">{s.k}</dt>
+                <dt className="font-display text-2xl text-accent md:text-3xl">
+                  {s.prefix}
+                  <AnimatedNumber value={s.n} from={0} duration={1100} />
+                </dt>
                 <dd className="mt-1 text-xs opacity-70 md:text-sm">{s.v}</dd>
               </div>
             ))}
