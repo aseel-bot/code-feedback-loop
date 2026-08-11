@@ -3,8 +3,8 @@ import { CARS } from "@/data/site";
 import { CarCard } from "@/components/cars/CarCard";
 import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/button";
-import { AnimatePresence, motion } from "framer-motion";
-import { T, containerStagger, fadeUp, fadeScale } from "@/lib/motion";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { STAGGER, T, fadeScale } from "@/lib/motion";
 import { AnimatedNumber } from "@/components/motion/AnimatedNumber";
 
 type CarsSearch = {
