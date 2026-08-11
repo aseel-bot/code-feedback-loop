@@ -17,6 +17,7 @@ import { QuickSearch } from "@/components/home/QuickSearch";
 import { BrandStrip } from "@/components/home/BrandStrip";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { AnimatedNumber } from "@/components/motion/AnimatedNumber";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { T, containerStagger, fadeUp } from "@/lib/motion";
 
