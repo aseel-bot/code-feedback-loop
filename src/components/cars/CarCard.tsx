@@ -1,6 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { Fuel, Users, Cog, CircleDot } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import type { PointerEvent } from "react";
 import type { Car } from "@/data/site";
 import { Button } from "@/components/ui/button";
 import { T } from "@/lib/motion";
@@ -8,14 +16,48 @@ import { T } from "@/lib/motion";
 export function CarCard({ car }: { car: Car }) {
   const reduce = useReducedMotion();
 
+  // تتبّع المؤشر لإمالة خفيفة ولمعة تتبع الحركة
+  const px = useMotionValue(0.5);
+  const py = useMotionValue(0.5);
+  const rx = useSpring(useTransform(py, [0, 1], [4, -4]), { stiffness: 220, damping: 24 });
+  const ry = useSpring(useTransform(px, [0, 1], [-5, 5]), { stiffness: 220, damping: 24 });
+  const glareX = useTransform(px, (v) => `${v * 100}%`);
+  const glareY = useTransform(py, (v) => `${v * 100}%`);
+  const glare = useMotionTemplate`radial-gradient(220px circle at ${glareX} ${glareY}, oklch(0.78 0.145 82 / 0.18), transparent 65%)`;
+
+  const onMove = (e: PointerEvent<HTMLElement>) => {
+    if (reduce) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    px.set((e.clientX - r.left) / r.width);
+    py.set((e.clientY - r.top) / r.height);
+  };
+  const onLeave = () => {
+    px.set(0.5);
+    py.set(0.5);
+  };
+
   return (
     <motion.article
       layout
-      className="group overflow-hidden rounded-xl border border-border bg-card shadow-[var(--shadow-card)] transition-[border-color,box-shadow] hover:border-accent/50 hover:shadow-[var(--shadow-elevated,0_18px_40px_-18px_rgba(0,0,0,0.45))]"
+      onPointerMove={onMove}
+      onPointerLeave={onLeave}
+      className="group relative overflow-hidden rounded-xl border border-border bg-card shadow-[var(--shadow-card)] transition-[border-color,box-shadow] hover:border-accent/50 hover:shadow-[var(--shadow-elevated,0_18px_40px_-18px_rgba(0,0,0,0.45))]"
       {...(reduce
         ? {}
-        : { whileHover: { y: -6, transition: T.base }, transition: T.base })}
+        : {
+            style: { rotateX: rx, rotateY: ry, transformPerspective: 900 },
+            whileHover: { y: -6, transition: T.base },
+            whileTap: { scale: 0.985 },
+            transition: T.base,
+          })}
     >
+      {!reduce && (
+        <motion.div
+          aria-hidden
+          style={{ backgroundImage: glare }}
+          className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        />
+      )}
       <Link to="/cars/$slug" params={{ slug: car.slug }} className="relative block overflow-hidden">
         <img
           src={car.image}
