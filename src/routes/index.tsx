@@ -46,19 +46,30 @@ const FEATURES = [
 ];
 
 function Home() {
-
+  const reduce = useReducedMotion();
+  const heroRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1.06, 1.16]);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -40]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
 
   return (
     <>
-      <section className="surface-ink relative isolate overflow-hidden">
-        <img
+      <section ref={heroRef} className="surface-ink relative isolate overflow-hidden">
+        <motion.img
           src={heroCar}
           alt="سيارة دفع رباعي فاخرة على طريق صحراوي وقت الغروب"
           width={1600}
           height={1008}
+          style={reduce ? undefined : { y: imgY, scale: imgScale }}
           className="absolute inset-0 size-full object-cover"
         />
         <div className="hero-overlay absolute inset-0" />
+
         <motion.div
           className="relative mx-auto max-w-7xl px-4 py-24 md:py-32"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }}
