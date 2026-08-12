@@ -1,0 +1,15 @@
+# Render Blueprint Deployment File for Adel Cars Platform
+services:
+  - type: web
+    name: adel-cars-platform
+    env: node
+    region: frankfurt # or singapore, oregon, ohio
+    plan: free # or starter / standard
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: PORT
+        value: 10000
