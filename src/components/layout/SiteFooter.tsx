@@ -58,12 +58,12 @@ export function SiteFooter() {
           <ul className="space-y-2 text-sm">
             <li>
               <Link to="/purchase/customers" className="opacity-75 hover:opacity-100">
-                طلب شراء — أفراد
+                طلب شراء أفراد
               </Link>
             </li>
             <li>
               <Link to="/purchase/companies" className="opacity-75 hover:opacity-100">
-                طلب شراء — شركات
+                طلب شراء شركات
               </Link>
             </li>
             <li>

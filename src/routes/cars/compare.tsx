@@ -39,7 +39,7 @@ function ComparePage() {
     { label: "الموديل", get: (c) => `${c.model} ${c.year}` },
     { label: "الفئة", get: (c) => c.category },
     { label: "السعر", get: (c) => (c.price ? `${c.price.toLocaleString("en-US")} ريال` : "عند الطلب") },
-    { label: "القسط الشهري", get: (c) => (c.monthly ? `${c.monthly.toLocaleString("en-US")} ريال` : "—") },
+    { label: "القسط الشهري", get: (c) => (c.monthly ? `${c.monthly.toLocaleString("en-US")} ريال` : "غير محدد") },
     { label: "الجير", get: (c) => c.basics.gear },
     { label: "حجم الإطار", get: (c) => c.basics.tire },
     { label: "الاستهلاك", get: (c) => c.basics.fuel },

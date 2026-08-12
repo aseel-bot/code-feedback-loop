@@ -298,10 +298,10 @@ export function PurchaseForm({
 
       {(downPayment != null || termMonths != null) && (
         <p className="md:col-span-2 rounded-lg bg-muted p-3 text-sm">
-          شروط التمويل المختارة: دفعة أولى {Number(downPayment ?? 0).toLocaleString("en-US")} ريال —
+          شروط التمويل المختارة: دفعة أولى {Number(downPayment ?? 0).toLocaleString("en-US")} ريال |
           مدة {termMonths} شهر
           {estimatedMonthly
-            ? ` — قسط تقديري ${Math.round(estimatedMonthly).toLocaleString("en-US")} ريال`
+            ? ` | قسط تقديري ${Math.round(estimatedMonthly).toLocaleString("en-US")} ريال`
             : ""}
         </p>
       )}

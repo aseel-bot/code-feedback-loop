@@ -157,7 +157,7 @@ function CarDetails() {
                   <p className="text-xs text-muted-foreground">شامل ضريبة القيمة المضافة</p>
                   {car.monthly && (
                     <p className="mt-3 rounded-lg bg-muted p-3 text-sm">
-                      قسط شهري {car.monthly.toLocaleString("en-US")} ريال — بدون دفعة أولى
+                      قسط شهري {car.monthly.toLocaleString("en-US")} ريال | بدون دفعة أولى
                     </p>
                   )}
                 </>

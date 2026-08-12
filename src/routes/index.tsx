@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "عادل للسيارات | إختيارك الذهبي لإمتلاك سيارة أحلامك" },
       {
         property: "og:description",
-        content: "اكتشف، قارن، امتلك وانطلق بسهولة — سيارات وكالات جديدة بخطط تمويل مرنة.",
+        content: "اكتشف، قارن، امتلك وانطلق بسهولة | سيارات وكالات جديدة بخطط تمويل مرنة.",
       },
     ],
   }),
@@ -81,7 +81,7 @@ function Home() {
         >
           <motion.span
             variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: T.hero } }} className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-bold text-accent">
-            <BadgeCheck className="size-4" /> موزع معتمد — شركة عادل للسيارات
+            <BadgeCheck className="size-4" /> موزع معتمد | شركة عادل للسيارات
           </motion.span>
           <motion.h1
             variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: T.hero } }}
@@ -136,10 +136,9 @@ function Home() {
 
 
       <section className="mx-auto mt-16 max-w-7xl px-4 md:mt-24">
-
-        <RevealGroup className="grid gap-4 md:grid-cols-4">
+        <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {FEATURES.map((f) => (
-            <RevealItem key={f.title} className="rounded-xl border border-border bg-card p-5">
+            <RevealItem key={f.title} className="rounded-xl border border-border bg-card p-5 transition duration-200 hover:border-accent/40">
               <f.icon className="size-7 text-accent" />
               <h3 className="mt-3 text-base">{f.title}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{f.body}</p>
@@ -154,7 +153,7 @@ function Home() {
             <p className="text-xs font-bold tracking-widest text-accent">أحدث الموديلات</p>
             <h2 className="mt-1 font-display text-2xl md:text-3xl">سيارات مختارة لك</h2>
           </div>
-          <Link to="/cars" className="flex items-center gap-1 text-sm font-bold text-accent">
+          <Link to="/cars" className="flex items-center gap-1 text-sm font-bold text-accent transition hover:opacity-80">
             كل السيارات <ArrowLeft className="size-4" />
           </Link>
         </div>
@@ -168,7 +167,7 @@ function Home() {
       </section>
 
       <section className="mx-auto mt-20 max-w-7xl px-4">
-        <Reveal variant="slow" className="grid items-center gap-10 rounded-2xl border border-border bg-card p-6 md:grid-cols-2 md:p-10">
+        <Reveal variant="slow" className="grid items-center gap-8 rounded-2xl border border-border bg-card p-6 md:grid-cols-2 md:p-10">
           <div>
             <p className="text-xs font-bold tracking-widest text-accent">إختر سيارتك</p>
             <h2 className="mt-2 font-display text-2xl md:text-3xl">
@@ -181,12 +180,12 @@ function Home() {
             <div className="mt-6 flex flex-wrap gap-3">
               <Button asChild>
                 <Link to="/purchase/customers">
-                  <User className="size-4" /> للأفراد
+                  <User className="size-4 me-1.5" /> للأفراد
                 </Link>
               </Button>
               <Button asChild variant="outline">
                 <Link to="/purchase/companies">
-                  <Building2 className="size-4" /> للشركات
+                  <Building2 className="size-4 me-1.5" /> للشركات
                 </Link>
               </Button>
             </div>
@@ -197,7 +196,7 @@ function Home() {
             loading="lazy"
             width={1200}
             height={900}
-            className="rounded-xl object-cover"
+            className="w-full rounded-xl object-cover"
           />
         </Reveal>
       </section>
@@ -205,12 +204,12 @@ function Home() {
       <section className="mx-auto mt-20 max-w-7xl px-4">
         <div className="flex items-end justify-between gap-4">
           <h2 className="font-display text-2xl md:text-3xl">أحدث العروض</h2>
-          <Link to="/offers" className="flex items-center gap-1 text-sm font-bold text-accent">
+          <Link to="/offers" className="flex items-center gap-1 text-sm font-bold text-accent transition hover:opacity-80">
             كل العروض <ArrowLeft className="size-4" />
           </Link>
         </div>
         <motion.div
-          className="mt-8 grid gap-6 md:grid-cols-3"
+          className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           variants={containerStagger}
           initial="hidden"
           whileInView="show"

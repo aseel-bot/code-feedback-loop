@@ -18,7 +18,7 @@ export const Route = createFileRoute("/contact-us")({
         content: "تواصل مع فريق عادل للسيارات عبر الرقم الموحد 920006652 أو نموذج التواصل، والرد خلال 24 ساعة عمل.",
       },
       { property: "og:title", content: "تواصل معنا | عادل للسيارات" },
-      { property: "og:description", content: "استفسارات، شكاوى، ومقترحات — نرد خلال 24 ساعة عمل." },
+      { property: "og:description", content: "استفسارات، شكاوى، ومقترحات ، نرد خلال 24 ساعة عمل." },
     ],
   }),
   component: Contact,
@@ -46,7 +46,7 @@ function Contact() {
     <>
       <PageHero
         title="تواصل معنا"
-        subtitle="نسعد بخدمتك — أرسل استفسارك وسنرد خلال 24 ساعة عمل."
+        subtitle="نسعد بخدمتك | أرسل استفسارك وسنرد خلال 24 ساعة عمل."
         crumbs={[{ label: "تواصل معنا" }]}
       />
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-3">

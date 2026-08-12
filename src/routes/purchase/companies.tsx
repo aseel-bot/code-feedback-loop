@@ -8,7 +8,7 @@ export const Route = createFileRoute("/purchase/companies")({
   }),
   head: () => ({
     meta: [
-      { title: "طلب شراء — شركات | عادل للسيارات" },
+      { title: "طلب شراء شركات | عادل للسيارات" },
       {
         name: "description",
         content: "طلب شراء سيارة أو أسطول سيارات للمنشآت مع عروض وتسعير خاص للشركات.",
@@ -26,7 +26,7 @@ function CompaniesPurchase() {
   return (
     <>
       <PageHero
-        title="طلب شراء — للشركات"
+        title="طلب شراء للشركات"
         subtitle="حلول شراء وأساطيل للمنشآت بعروض وتسعير خاص."
         crumbs={[{ label: "طلب شراء", to: "/purchase" }, { label: "للشركات" }]}
       />

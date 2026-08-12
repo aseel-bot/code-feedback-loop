@@ -18,7 +18,7 @@ export const Route = createFileRoute("/purchase/customers")({
   }),
   head: () => ({
     meta: [
-      { title: "طلب شراء — أفراد | عادل للسيارات" },
+      { title: "طلب شراء أفراد | عادل للسيارات" },
       {
         name: "description",
         content: "عبّئ نموذج طلب الشراء للأفراد واختر التمويل أو الكاش، وسنتواصل معك سريعًا.",
@@ -36,7 +36,7 @@ function CustomersPurchase() {
   return (
     <>
       <PageHero
-        title="طلب شراء — للأفراد"
+        title="طلب شراء للأفراد"
         subtitle="عبّئ البيانات وسيتواصل معك مستشار المبيعات لإتمام الطلب."
         crumbs={[{ label: "طلب شراء", to: "/purchase" }, { label: "للأفراد" }]}
       />

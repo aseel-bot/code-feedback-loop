@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, Phone, ChevronDown, X } from "lucide-react";
+import { Menu, Phone, ChevronDown, X, Search } from "lucide-react";
 import { CONTACT } from "@/data/site";
 import { Button } from "@/components/ui/button";
+import { CommandPalette } from "@/components/ui/CommandPalette";
 
 const NAV = [
   { to: "/", label: "الرئيسية" },
@@ -16,6 +17,7 @@ const NAV = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [cmdOpen, setCmdOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50">
@@ -90,13 +92,25 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Button asChild size="sm" className="hidden sm:inline-flex">
+            {/* Command Palette Trigger Button */}
+            <button
+              onClick={() => setCmdOpen(true)}
+              className="flex items-center gap-2 rounded-xl border border-border/80 bg-muted/60 px-3 py-1.5 text-xs text-muted-foreground transition hover:border-accent/50 hover:bg-background hover:text-foreground active:scale-95"
+            >
+              <Search className="size-3.5 text-accent" />
+              <span className="hidden sm:inline">بحث سريـع...</span>
+              <kbd className="hidden sm:inline-flex items-center rounded border border-border bg-background px-1.5 font-mono text-[10px]">
+                ⌘K
+              </kbd>
+            </button>
+
+            <Button asChild size="sm" className="hidden sm:inline-flex active:scale-95 transition-transform">
               <Link to="/purchase">طلب شراء</Link>
             </Button>
             <button
               aria-label="القائمة"
               onClick={() => setOpen((v) => !v)}
-              className="grid size-10 place-items-center rounded-md border border-border lg:hidden"
+              className="grid size-10 place-items-center rounded-md border border-border lg:hidden active:scale-95"
             >
               {open ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
@@ -107,17 +121,14 @@ export function SiteHeader() {
           <nav className="border-t border-border bg-background px-4 py-3 lg:hidden">
             {[
               ...NAV,
-              { to: "/purchase/customers", label: "طلب شراء — أفراد" },
-              { to: "/purchase/companies", label: "طلب شراء — شركات" },
-              { to: "/contact-us", label: "تواصل معنا" },
-              { to: "/faq", label: "الأسئلة الشائعة" },
-              { to: "/jobs", label: "الوظائف" },
+              { to: "/purchase/customers", label: "طلب شراء أفراد" },
+              { to: "/purchase/companies", label: "طلب شراء شركات" },
             ].map((item) => (
               <Link
                 key={item.to + item.label}
                 to={item.to}
                 onClick={() => setOpen(false)}
-                className="block rounded-md px-2 py-2.5 text-sm font-medium hover:bg-muted"
+                className="block rounded-md py-2 text-sm font-medium text-foreground transition hover:text-accent"
               >
                 {item.label}
               </Link>
@@ -125,6 +136,8 @@ export function SiteHeader() {
           </nav>
         )}
       </div>
+
+      <CommandPalette open={cmdOpen} onOpenChange={setCmdOpen} />
     </header>
   );
 }
