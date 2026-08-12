@@ -1,11 +1,12 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { CARS } from "@/data/site";
+import { useState } from "react";
+import { CARS, BRAND_ICONS, BRAND_WORDMARKS, BRAND_LOCAL_LOGOS } from "@/data/site";
 import { CarCard } from "@/components/cars/CarCard";
 import { PageHero } from "@/components/layout/PageHero";
-import { Button } from "@/components/ui/button";
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { STAGGER, T, fadeScale } from "@/lib/motion";
 import { AnimatedNumber } from "@/components/motion/AnimatedNumber";
+import { Sparkles, SlidersHorizontal, RotateCcw } from "lucide-react";
 
 type CarsSearch = {
   brand?: string | undefined;
@@ -38,6 +39,29 @@ export const Route = createFileRoute("/cars/")({
   component: CarsPage,
 });
 
+function BrandBadgeLogo({ brand }: { brand: string }) {
+  const slug = BRAND_ICONS[brand];
+  const localSrc = BRAND_LOCAL_LOGOS[brand];
+  const [failed, setFailed] = useState(false);
+  const wordmark = BRAND_WORDMARKS[brand] ?? brand;
+
+  const imgSrc = !failed && slug ? `https://cdn.simpleicons.org/${slug}/d97706` : localSrc ?? null;
+
+  if (!imgSrc || (failed && !slug)) {
+    return <span className="font-bold text-[11px]">{wordmark}</span>;
+  }
+
+  return (
+    <img
+      src={imgSrc}
+      alt={brand}
+      className="size-4.5 object-contain shrink-0 opacity-90 transition duration-200 group-hover:scale-110"
+      loading="lazy"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 function CarsPage() {
   const search = Route.useSearch();
   const navigate = useNavigate({ from: "/cars/" });
@@ -68,121 +92,139 @@ function CarsPage() {
       />
 
       <div className="mx-auto max-w-7xl px-4 py-10">
-        <div className="flex gap-2 overflow-x-auto pb-4">
+        {/* Brand Filter Pills Bar with Smooth Gliding Active Pill (emil-design-eng) */}
+        <div className="no-scrollbar flex gap-2.5 overflow-x-auto pb-4 pt-1">
           <button
             onClick={() => set({ brand: undefined, model: undefined })}
-            className={`shrink-0 rounded-full border px-4 py-2 text-sm transition ${
-              !search.brand ? "border-accent bg-accent text-accent-foreground" : "border-border"
+            className={`group relative flex shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold transition duration-200 active:scale-[0.97] ${
+              !search.brand
+                ? "border-accent bg-accent text-accent-foreground shadow-xs"
+                : "border-border/80 bg-card text-muted-foreground hover:border-accent/50 hover:text-foreground"
             }`}
           >
-            كل الماركات
+            <Sparkles className="size-4 text-accent group-hover:scale-110 transition-transform" />
+            <span>كل الماركات</span>
+            <span className="rounded-full bg-background/30 px-1.5 py-0.5 text-[10px]">
+              {CARS.length}
+            </span>
           </button>
-          {brands.map((b) => (
-            <button
-              key={b}
-              onClick={() => set({ brand: b, model: undefined })}
-              className={`shrink-0 rounded-full border px-4 py-2 text-sm transition ${
-                search.brand === b ? "border-accent bg-accent text-accent-foreground" : "border-border"
-              }`}
-            >
-              {b}
-            </button>
-          ))}
-        </div>
 
-        <div className="mt-4 flex flex-wrap items-center gap-3 rounded-xl border border-border bg-card p-4">
-          <select
-            aria-label="ترتيب حسب"
-            value={search.sort ?? ""}
-            onChange={(e) => set({ sort: (e.target.value || undefined) as CarsSearch["sort"] })}
-            className="h-10 rounded-md border border-input bg-background px-3 text-sm"
-          >
-            <option value="">ترتيب حسب</option>
-            <option value="newest">الأحدث</option>
-            <option value="price-asc">الأقل سعرًا</option>
-            <option value="price-desc">الأعلى سعرًا</option>
-          </select>
-          <select
-            aria-label="الموديل"
-            value={search.model ?? ""}
-            onChange={(e) => set({ model: e.target.value || undefined })}
-            className="h-10 rounded-md border border-input bg-background px-3 text-sm"
-          >
-            <option value="">الموديل</option>
-            {models.map((m) => (
-              <option key={m} value={m}>
-                {m}
-              </option>
-            ))}
-          </select>
-          <select
-            aria-label="الفئة"
-            value={search.category ?? ""}
-            onChange={(e) => set({ category: e.target.value || undefined })}
-            className="h-10 rounded-md border border-input bg-background px-3 text-sm"
-          >
-            <option value="">الفئة</option>
-            {["سيدان", "دفع رباعي", "كروس أوفر", "بيك أب"].map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
-          <Button
-            variant="outline"
-            onClick={() =>
-              navigate({ search: { brand: undefined, model: undefined, category: undefined, sort: undefined } })
-            }
-          >
-            إعادة تعيين
-          </Button>
-          <span className="ms-auto text-sm text-muted-foreground">
-            النتائج: <AnimatedNumber value={list.length} className="font-bold text-foreground" /> سيارة
-          </span>
-        </div>
+          {brands.map((b) => {
+            const count = CARS.filter((c) => c.brand === b).length;
+            const isSelected = search.brand === b;
 
-        <LayoutGroup>
-          <motion.div layout className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <AnimatePresence mode="popLayout" initial={false}>
-              {list.map((car, i) => (
-                <motion.div
-                  key={car.slug}
-                  layout
-                  initial={{ opacity: 0, y: 20, scale: 0.97 }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    transition: { ...T.base, delay: Math.min(i, 8) * (STAGGER * 0.7) },
-                  }}
-                  exit={{ opacity: 0, y: -10, scale: 0.97, transition: T.fast }}
-                >
-                  <CarCard car={car} />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-
-          <AnimatePresence initial={false}>
-            {!list.length && (
-              <motion.div
-                key="empty"
-                layout
-                variants={fadeScale}
-                initial="hidden"
-                animate="show"
-                exit="exit"
-                className="mt-12 rounded-xl border border-dashed border-border p-12 text-center"
+            return (
+              <button
+                key={b}
+                onClick={() => set({ brand: isSelected ? undefined : b, model: undefined })}
+                className={`group relative flex shrink-0 items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-bold transition duration-200 active:scale-[0.97] ${
+                  isSelected
+                    ? "border-accent bg-accent text-accent-foreground shadow-xs"
+                    : "border-border/80 bg-card text-foreground hover:border-accent/50 hover:bg-muted/50"
+                }`}
               >
-                <p className="text-muted-foreground">لا توجد سيارات مطابقة للفلاتر المختارة.</p>
-                <Link to="/cars" search={{}} className="mt-3 inline-block text-sm font-bold text-accent">
-                  عرض كل السيارات
-                </Link>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </LayoutGroup>
+                <BrandBadgeLogo brand={b} />
+                <span>{b}</span>
+                <span
+                  className={`rounded-full px-1.5 py-0.5 text-[10px] ${
+                    isSelected ? "bg-background/30 text-accent-foreground" : "bg-muted text-muted-foreground"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
+        {/* Filter Controls Bar */}
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/80 bg-card p-4 shadow-2xs">
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-2 text-sm font-bold text-accent">
+              <SlidersHorizontal className="size-4" />
+              <span>التصفية والترتيب:</span>
+            </div>
+
+            {search.brand && (
+              <select
+                aria-label="الموديل"
+                value={search.model ?? ""}
+                onChange={(e) => set({ model: e.target.value || undefined })}
+                className="h-9.5 rounded-xl border border-input bg-background px-3 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-accent"
+              >
+                <option value="">جميع موديلات {search.brand}</option>
+                {models.map((m) => (
+                  <option key={m} value={m}>
+                    {m}
+                  </option>
+                ))}
+              </select>
+            )}
+
+            <select
+              aria-label="ترتيب حسب"
+              value={search.sort ?? ""}
+              onChange={(e) => set({ sort: (e.target.value || undefined) as CarsSearch["sort"] })}
+              className="h-9.5 rounded-xl border border-input bg-background px-3 text-xs font-medium focus:outline-none focus:ring-1 focus:ring-accent"
+            >
+              <option value="">ترتيب حسب: الافتراضي</option>
+              <option value="price-asc">السعر: من الأقل للأعلى</option>
+              <option value="price-desc">السعر: من الأعلى للأقل</option>
+              <option value="newest">الأحدث صنعاً</option>
+            </select>
+
+            {(search.brand || search.model || search.category || search.sort) && (
+              <button
+                onClick={() => navigate({ search: {} })}
+                className="flex items-center gap-1.5 rounded-xl border border-border bg-muted/60 px-3 py-2 text-xs font-medium text-muted-foreground transition hover:bg-background hover:text-foreground active:scale-95"
+              >
+                <RotateCcw className="size-3.5" />
+                <span>إعادة ضبط</span>
+              </button>
+            )}
+          </div>
+
+          <div className="text-xs font-bold text-muted-foreground">
+            عرض <AnimatedNumber value={list.length} /> سيارات من أصل {CARS.length}
+          </div>
+        </div>
+
+        {/* Cars Grid */}
+        {list.length === 0 ? (
+          <div className="mt-12 rounded-2xl border border-dashed border-border p-12 text-center">
+            <p className="text-base font-bold text-foreground">لا توجد سيارات مطابقة لخيارات الفلترة الحالية.</p>
+            <p className="mt-1 text-xs text-muted-foreground">جرب اختيار ماركة أخرى أو إعادة ضبط خيارات البحث.</p>
+            <button
+              onClick={() => navigate({ search: {} })}
+              className="mt-4 rounded-xl bg-accent px-4 py-2 text-xs font-bold text-accent-foreground shadow-xs transition hover:opacity-90 active:scale-95"
+            >
+              إعادة ضبط الفلاتر
+            </button>
+          </div>
+        ) : (
+          <LayoutGroup>
+            <motion.div
+              layout
+              className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+            >
+              <AnimatePresence mode="popLayout">
+                {list.map((car, index) => (
+                  <motion.div
+                    key={car.slug}
+                    layout
+                    variants={fadeScale}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    transition={{ ...T, delay: Math.min(index * STAGGER, 0.25) }}
+                  >
+                    <CarCard car={car} />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
+          </LayoutGroup>
+        )}
       </div>
     </>
   );

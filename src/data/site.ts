@@ -493,20 +493,35 @@ export const BRAND_WORDMARKS: Record<string, string> = {
   "إم جي": "MG",
 };
 
-/** معرفات شعارات الماركات (simple-icons) — الماركات غير المتوفرة تعرض اسمًا مكتوبًا */
 export const BRAND_ICONS: Record<string, string> = {
   "تويوتا": "toyota",
-  "نيسان": "nissan",
-  "هوندا": "honda",
-  "كيا": "kia",
+  "لكزس": "lexus",
   "هيونداي": "hyundai",
-  "شيفروليه": "chevrolet",
+  "كيا": "kia",
+  "نيسان": "nissan",
   "فورد": "ford",
+  "شيفروليه": "chevrolet",
+  "جي إم سي": "gmc",
+  "مرسيدس": "mercedes",
   "بي إم دبليو": "bmw",
   "أودي": "audi",
   "جيب": "jeep",
   "مازدا": "mazda",
   "إم جي": "mg",
+  "شيري": "chery",
+  "بي واي دي": "byd",
+  "لاند روفر": "landrover",
+  "جاكوار": "jaguar",
+  "جينيسيس": "genesis",
+  "هوندا": "honda",
+  "ميتسوبيشي": "mitsubishi",
+  "سوزوكي": "suzuki",
+  "بورشه": "porsche",
+  "دودج": "dodge",
+  "رام": "ram",
+  "إنفينيتي": "infiniti",
+  "سوبارو": "subaru",
+  "جيلي": "geely",
 };
 
 /** مسارات شعارات الماركات المحلية المستخرجة من عادل للسيارات */
