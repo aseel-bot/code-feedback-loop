@@ -3,12 +3,14 @@ services:
   - type: web
     name: adel-cars-platform
     env: node
-    region: frankfurt # or singapore, oregon, ohio
-    plan: free # or starter / standard
-    buildCommand: npm install && npm run build
+    region: frankfurt
+    plan: free
+    buildCommand: NITRO_PRESET=node-server npm run build
     startCommand: npm run start
     autoDeploy: true
     envVars:
+      - key: NITRO_PRESET
+        value: node-server
       - key: NODE_VERSION
         value: 20.18.0
       - key: PORT
