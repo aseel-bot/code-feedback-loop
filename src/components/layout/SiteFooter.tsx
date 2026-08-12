@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { CONTACT } from "@/data/site";
+import { CarLogo } from "@/components/ui/CarLogo";
 
 const LINKS = [
   { to: "/cars", label: "السيارات" },
@@ -18,10 +19,8 @@ export function SiteFooter() {
     <footer className="surface-ink mt-20">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="grid size-9 place-items-center rounded-md bg-accent font-display text-lg font-black text-accent-foreground">
-              ع
-            </span>
+          <div className="group flex items-center gap-2.5">
+            <CarLogo className="size-9" />
             <span className="font-display text-lg font-black">عادل للسيارات</span>
           </div>
           <p className="mt-4 text-sm opacity-75">
@@ -41,11 +40,11 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h4 className="mb-4 text-sm font-bold text-accent">روابط سريعة</h4>
-          <ul className="space-y-2 text-sm">
+          <h4 className="font-display text-base text-accent">روابط سريعة</h4>
+          <ul className="mt-4 space-y-2 text-sm">
             {LINKS.map((l) => (
               <li key={l.to}>
-                <Link to={l.to} className="opacity-75 transition hover:opacity-100">
+                <Link to={l.to} className="opacity-80 transition hover:opacity-100">
                   {l.label}
                 </Link>
               </li>
@@ -54,54 +53,47 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h4 className="mb-4 text-sm font-bold text-accent">طلب الشراء</h4>
-          <ul className="space-y-2 text-sm">
+          <h4 className="font-display text-base text-accent">طلبات الشراء</h4>
+          <ul className="mt-4 space-y-2 text-sm">
             <li>
-              <Link to="/purchase/customers" className="opacity-75 hover:opacity-100">
-                طلب شراء أفراد
+              <Link to="/purchase/customers" className="opacity-80 transition hover:opacity-100">
+                تمويل أفراد
               </Link>
             </li>
             <li>
-              <Link to="/purchase/companies" className="opacity-75 hover:opacity-100">
-                طلب شراء شركات
+              <Link to="/purchase/companies" className="opacity-80 transition hover:opacity-100">
+                تمويل شركات
               </Link>
             </li>
             <li>
-              <Link to="/promotional-offers" className="opacity-75 hover:opacity-100">
-                العروض الترويجية
-              </Link>
-            </li>
-            <li>
-              <Link to="/blog" className="opacity-75 hover:opacity-100">
-                المدونة
+              <Link to="/cars/compare" className="opacity-80 transition hover:opacity-100">
+                مقارنة المواصفات
               </Link>
             </li>
           </ul>
         </div>
 
         <div>
-          <h4 className="mb-4 text-sm font-bold text-accent">تواصل معنا</h4>
-          <ul className="space-y-3 text-sm opacity-80">
+          <h4 className="font-display text-base text-accent">معلومات التواصل</h4>
+          <ul className="mt-4 space-y-3 text-sm opacity-80">
             <li className="flex items-center gap-2">
-              <Phone className="size-4 text-accent" />
-              <a href={`tel:${CONTACT.unifiedNumber}`}>{CONTACT.unifiedNumber}</a>
+              <Phone className="size-4 shrink-0 text-accent" />
+              <span dir="ltr">{CONTACT.unifiedNumber}</span>
             </li>
             <li className="flex items-center gap-2">
-              <Mail className="size-4 text-accent" />
-              <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+              <Mail className="size-4 shrink-0 text-accent" />
+              <span>{CONTACT.email}</span>
             </li>
             <li className="flex items-start gap-2">
-              <MapPin className="mt-0.5 size-4 shrink-0 text-accent" />
+              <MapPin className="size-4 shrink-0 text-accent" />
               <span>{CONTACT.address}</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <p className="mx-auto max-w-7xl px-4 py-5 text-center text-xs opacity-60">
-          © {new Date().getFullYear()} شركة عادل للسيارات. جميع الحقوق محفوظة.
-        </p>
+      <div className="border-t border-white/10 text-center text-xs opacity-60 py-4">
+        © {new Date().getFullYear()} شركة عادل للسيارات. جميع الحقوق محفوظة.
       </div>
     </footer>
   );
