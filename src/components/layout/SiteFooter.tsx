@@ -20,7 +20,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4">
         <div>
           <div className="group flex items-center gap-2.5">
-            <CarLogo className="size-9" />
+            <CarLogo className="h-14 w-auto" />
             <span className="font-display text-lg font-black">نجم الشارقة للسيارات</span>
           </div>
           <p className="mt-4 text-sm opacity-75">

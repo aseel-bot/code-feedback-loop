@@ -50,7 +50,7 @@ export function SiteHeader() {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 md:gap-4">
           {/* Logo */}
           <Link to="/" className="group flex shrink-0 items-center gap-2.5">
-            <CarLogo className="size-9" />
+            <CarLogo className="h-14 w-auto" />
             <span className="font-display text-lg leading-tight font-black">
               نجم الشارقة للسيارات
               <span className="block text-[10px] font-medium tracking-widest text-muted-foreground">
