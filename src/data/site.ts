@@ -882,7 +882,7 @@ export const SERVICES = [
   {
     title: "التوصيل",
     icon: "truck",
-    items: ["توصيل السيارة إلى مدينة العميل داخل المملكة"],
+    items: ["توصيل السيارة إلى مدينة العميل داخل اليمن"],
   },
 ];
 
@@ -920,7 +920,7 @@ export const FAQS: { category: string; items: { q: string; a: string }[] }[] = [
 export const POSTS = [
   {
     slug: "afdal-sayarat-aailia-2026",
-    title: "أفضل السيارات العائلية في السعودية 2026",
+    title: "أفضل السيارات العائلية في اليمن 2026",
     excerpt: "مقارنة عملية بين أبرز الخيارات العائلية من حيث المساحة والاستهلاك والسعر.",
     date: "2026-07-28",
     image: carSuv,
@@ -936,7 +936,7 @@ export const POSTS = [
   },
   {
     slug: "sianat-alsayara-fi-alsaif",
-    title: "صيانة سيارتك في صيف المملكة",
+    title: "صيانة سيارتك في صيف اليمن",
     excerpt: "نصائح عملية لحماية سيارتك من الحرارة العالية.",
     date: "2026-06-15",
     image: carSedan,

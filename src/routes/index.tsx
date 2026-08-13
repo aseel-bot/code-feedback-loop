@@ -44,7 +44,7 @@ const FEATURES = [
   { icon: BadgeCheck, title: "موزع معتمد", body: "أكثر من 40 علامة تجارية بضمان الوكيل." },
   { icon: ShieldCheck, title: "ضمان ممتد", body: "تغطية شاملة لأهم أجزاء السيارة." },
   { icon: Landmark, title: "تمويل معتمد", body: "أفضل عرض تمويلي من بنوك وشركات معتمدة." },
-  { icon: Truck, title: "توصيل لمدينتك", body: "نوصل سيارتك أينما كنت داخل المملكة." },
+  { icon: Truck, title: "توصيل لمدينتك", body: "نوصل سيارتك أينما كنت داخل اليمن." },
 ];
 
 function Home() {
