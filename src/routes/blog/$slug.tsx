@@ -11,8 +11,8 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.title ?? "مقال"} | مدونة عادل للسيارات` },
-      { name: "description", content: loaderData?.excerpt ?? "مقال من مدونة عادل للسيارات." },
+      { title: `${loaderData?.title ?? "مقال"} | مدونة نجم الشارقة للسيارات` },
+      { name: "description", content: loaderData?.excerpt ?? "مقال من مدونة نجم الشارقة للسيارات." },
       { property: "og:title", content: loaderData?.title ?? "مقال" },
       { property: "og:description", content: loaderData?.excerpt ?? "نصائح السيارات." },
       { property: "og:type", content: "article" },

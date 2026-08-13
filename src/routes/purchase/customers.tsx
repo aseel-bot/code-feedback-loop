@@ -18,12 +18,12 @@ export const Route = createFileRoute("/purchase/customers")({
   }),
   head: () => ({
     meta: [
-      { title: "طلب شراء أفراد | عادل للسيارات" },
+      { title: "طلب شراء أفراد | نجم الشارقة للسيارات" },
       {
         name: "description",
         content: "عبّئ نموذج طلب الشراء للأفراد واختر التمويل أو الكاش، وسنتواصل معك سريعًا.",
       },
-      { property: "og:title", content: "طلب شراء للأفراد | عادل للسيارات" },
+      { property: "og:title", content: "طلب شراء للأفراد | نجم الشارقة للسيارات" },
       { property: "og:description", content: "نموذج طلب شراء سيارة للأفراد بخطوات بسيطة." },
     ],
   }),

@@ -22,8 +22,8 @@ export const GALLERY_EXTRA = [
 ];
 
 export const CONTACT = {
-  unifiedNumber: "770055555",
-  whatsapp: "967770055555",
+  unifiedNumber: "733628944",
+  whatsapp: "967733628944",
   email: "info@nagmalshareka.com",
   address: "تعز، الحوبان، جوار مصانع هائل سعيد",
   workHours: "الأحد - الخميس: 9:00 صباحًا - 9:00 مساءً",
@@ -995,7 +995,7 @@ export const BRAND_ICONS: Record<string, string> = {
   "جيلي": "geely",
 };
 
-/** مسارات شعارات الماركات المحلية المستخرجة من عادل للسيارات */
+/** مسارات شعارات الماركات المحلية المستخرجة من نجم الشارقة للسيارات */
 export const BRAND_LOCAL_LOGOS: Record<string, string> = {
   "تويوتا": "/brands/toyota.webp",
   "لكزس": "/brands/lexus.png",

@@ -5,12 +5,12 @@ import { PageHero } from "@/components/layout/PageHero";
 export const Route = createFileRoute("/purchase/")({
   head: () => ({
     meta: [
-      { title: "طلب شراء سيارة | أفراد أو شركات — عادل للسيارات" },
+      { title: "طلب شراء سيارة | أفراد أو شركات — نجم الشارقة للسيارات" },
       {
         name: "description",
         content: "قدّم طلب شراء سيارة كاش أو تمويل، كفرد أو كشركة، وسيتواصل معك فريق المبيعات.",
       },
-      { property: "og:title", content: "طلب شراء سيارة | عادل للسيارات" },
+      { property: "og:title", content: "طلب شراء سيارة | نجم الشارقة للسيارات" },
       { property: "og:description", content: "اختر نوع الطلب: أفراد أو شركات، وابدأ إجراءات الشراء." },
     ],
   }),

@@ -11,12 +11,12 @@ export const Route = createFileRoute("/cars/compare")({
   }),
   head: () => ({
     meta: [
-      { title: "مقارنة السيارات | عادل للسيارات" },
+      { title: "مقارنة السيارات | نجم الشارقة للسيارات" },
       {
         name: "description",
         content: "قارن حتى ثلاث سيارات جنبًا إلى جنب في السعر والقسط والمواصفات التقنية والداخلية.",
       },
-      { property: "og:title", content: "مقارنة السيارات | عادل للسيارات" },
+      { property: "og:title", content: "مقارنة السيارات | نجم الشارقة للسيارات" },
       { property: "og:description", content: "أداة مقارنة سريعة بين سيارات الوكالات." },
     ],
   }),

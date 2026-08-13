@@ -12,10 +12,10 @@ export const Route = createFileRoute("/offers/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.title ?? "تفاصيل العرض"} | عادل للسيارات` },
+      { title: `${loaderData?.title ?? "تفاصيل العرض"} | نجم الشارقة للسيارات` },
       { name: "description", content: loaderData?.subtitle ?? "تفاصيل العرض وشروطه." },
-      { property: "og:title", content: `${loaderData?.title ?? "عرض"} | عادل للسيارات` },
-      { property: "og:description", content: loaderData?.subtitle ?? "عرض حصري من عادل للسيارات." },
+      { property: "og:title", content: `${loaderData?.title ?? "عرض"} | نجم الشارقة للسيارات` },
+      { property: "og:description", content: loaderData?.subtitle ?? "عرض حصري من نجم الشارقة للسيارات." },
     ],
   }),
   component: OfferDetails,

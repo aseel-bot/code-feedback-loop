@@ -5,12 +5,12 @@ import { PageHero } from "@/components/layout/PageHero";
 export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
-      { title: "المدونة | نصائح ومقالات السيارات — عادل للسيارات" },
+      { title: "المدونة | نصائح ومقالات السيارات — نجم الشارقة للسيارات" },
       {
         name: "description",
         content: "مقالات ونصائح عن شراء السيارات، التمويل، والصيانة في السوق السعودي.",
       },
-      { property: "og:title", content: "مدونة عادل للسيارات" },
+      { property: "og:title", content: "مدونة نجم الشارقة للسيارات" },
       { property: "og:description", content: "نصائح عملية قبل شراء سيارتك القادمة." },
     ],
   }),

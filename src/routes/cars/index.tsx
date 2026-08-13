@@ -27,12 +27,12 @@ export const Route = createFileRoute("/cars/")({
   }),
   head: () => ({
     meta: [
-      { title: "جميع السيارات | عادل للسيارات" },
+      { title: "جميع السيارات | نجم الشارقة للسيارات" },
       {
         name: "description",
         content: "تصفح جميع سيارات الوكالات الجديدة وفلترها حسب الماركة والموديل والفئة والسعر.",
       },
-      { property: "og:title", content: "جميع السيارات | عادل للسيارات" },
+      { property: "og:title", content: "جميع السيارات | نجم الشارقة للسيارات" },
       { property: "og:description", content: "قائمة سيارات الوكالات المتاحة مع الأسعار والأقساط الشهرية." },
     ],
   }),

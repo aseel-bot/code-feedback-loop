@@ -8,12 +8,12 @@ export const Route = createFileRoute("/purchase/companies")({
   }),
   head: () => ({
     meta: [
-      { title: "طلب شراء شركات | عادل للسيارات" },
+      { title: "طلب شراء شركات | نجم الشارقة للسيارات" },
       {
         name: "description",
         content: "طلب شراء سيارة أو أسطول سيارات للمنشآت مع عروض وتسعير خاص للشركات.",
       },
-      { property: "og:title", content: "طلب شراء للشركات | عادل للسيارات" },
+      { property: "og:title", content: "طلب شراء للشركات | نجم الشارقة للسيارات" },
       { property: "og:description", content: "حلول أساطيل وعروض تمويل مخصصة للمنشآت." },
     ],
   }),

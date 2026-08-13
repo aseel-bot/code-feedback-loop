@@ -17,9 +17,9 @@ export const Route = createFileRoute("/cars/$slug/")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.name ?? "تفاصيل السيارة"} | عادل للسيارات` },
+      { title: `${loaderData?.name ?? "تفاصيل السيارة"} | نجم الشارقة للسيارات` },
       { name: "description", content: loaderData?.intro ?? "تفاصيل ومواصفات السيارة." },
-      { property: "og:title", content: `${loaderData?.name ?? "سيارة"} | عادل للسيارات` },
+      { property: "og:title", content: `${loaderData?.name ?? "سيارة"} | نجم الشارقة للسيارات` },
       {
         property: "og:description",
         content: loaderData?.intro ?? "مواصفات وأسعار وأقساط السيارة.",

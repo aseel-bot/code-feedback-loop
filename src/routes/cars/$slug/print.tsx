@@ -10,13 +10,13 @@ export const Route = createFileRoute("/cars/$slug/print")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `طباعة مواصفات ${loaderData?.name ?? "السيارة"} | عادل للسيارات` },
+      { title: `طباعة مواصفات ${loaderData?.name ?? "السيارة"} | نجم الشارقة للسيارات` },
       {
         name: "description",
         content: "نسخة قابلة للطباعة من مواصفات السيارة وأسعارها وأقساطها.",
       },
       { name: "robots", content: "noindex" },
-      { property: "og:title", content: "نسخة الطباعة | عادل للسيارات" },
+      { property: "og:title", content: "نسخة الطباعة | نجم الشارقة للسيارات" },
       { property: "og:description", content: "مواصفات السيارة في نسخة مهيّأة للطباعة." },
     ],
   }),
