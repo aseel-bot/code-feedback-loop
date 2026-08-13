@@ -10,7 +10,6 @@ const LINKS = [
   { to: "/about-us", label: "من نحن" },
   { to: "/contact-us", label: "تواصل معنا" },
   { to: "/faq", label: "الأسئلة الشائعة" },
-  { to: "/jobs", label: "الوظائف" },
   { to: "/privacy-policy", label: "سياسة الخصوصية" },
 ];
 

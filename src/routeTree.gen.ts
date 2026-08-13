@@ -13,7 +13,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutUsRouteImport } from './routes/about-us'
 import { Route as ContactUsRouteImport } from './routes/contact-us'
 import { Route as FaqRouteImport } from './routes/faq'
-import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as PromotionalOffersRouteImport } from './routes/promotional-offers'
 import { Route as ServicesRouteImport } from './routes/services'
@@ -48,11 +47,6 @@ const ContactUsRoute = ContactUsRouteImport.update({
 const FaqRoute = FaqRouteImport.update({
   id: '/faq',
   path: '/faq',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JobsRoute = JobsRouteImport.update({
-  id: '/jobs',
-  path: '/jobs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -136,7 +130,6 @@ export interface FileRoutesByFullPath {
   '/about-us': typeof AboutUsRoute
   '/contact-us': typeof ContactUsRoute
   '/faq': typeof FaqRoute
-  '/jobs': typeof JobsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/promotional-offers': typeof PromotionalOffersRoute
   '/services': typeof ServicesRoute
@@ -158,7 +151,6 @@ export interface FileRoutesByTo {
   '/about-us': typeof AboutUsRoute
   '/contact-us': typeof ContactUsRoute
   '/faq': typeof FaqRoute
-  '/jobs': typeof JobsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/promotional-offers': typeof PromotionalOffersRoute
   '/services': typeof ServicesRoute
@@ -181,7 +173,6 @@ export interface FileRoutesById {
   '/about-us': typeof AboutUsRoute
   '/contact-us': typeof ContactUsRoute
   '/faq': typeof FaqRoute
-  '/jobs': typeof JobsRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/promotional-offers': typeof PromotionalOffersRoute
   '/services': typeof ServicesRoute
@@ -205,7 +196,6 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/contact-us'
     | '/faq'
-    | '/jobs'
     | '/privacy-policy'
     | '/promotional-offers'
     | '/services'
@@ -227,7 +217,6 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/contact-us'
     | '/faq'
-    | '/jobs'
     | '/privacy-policy'
     | '/promotional-offers'
     | '/services'
@@ -249,7 +238,6 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/contact-us'
     | '/faq'
-    | '/jobs'
     | '/privacy-policy'
     | '/promotional-offers'
     | '/services'
@@ -272,7 +260,6 @@ export interface RootRouteChildren {
   AboutUsRoute: typeof AboutUsRoute
   ContactUsRoute: typeof ContactUsRoute
   FaqRoute: typeof FaqRoute
-  JobsRoute: typeof JobsRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   PromotionalOffersRoute: typeof PromotionalOffersRoute
   ServicesRoute: typeof ServicesRoute
@@ -318,13 +305,6 @@ declare module '@tanstack/react-router' {
       path: '/faq'
       fullPath: '/faq'
       preLoaderRoute: typeof FaqRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/jobs': {
-      id: '/jobs'
-      path: '/jobs'
-      fullPath: '/jobs'
-      preLoaderRoute: typeof JobsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -440,7 +420,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutUsRoute: AboutUsRoute,
   ContactUsRoute: ContactUsRoute,
   FaqRoute: FaqRoute,
-  JobsRoute: JobsRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   PromotionalOffersRoute: PromotionalOffersRoute,
   ServicesRoute: ServicesRoute,
