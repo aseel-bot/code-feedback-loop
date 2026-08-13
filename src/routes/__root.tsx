@@ -89,13 +89,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "عادل للسيارات | موزع معتمد لسيارات الوكالات في السعودية" },
+      { title: "نجم الشارقة للسيارات | موزع معتمد لسيارات الوكالات في اليمن" },
       {
         name: "description",
-        content: "تصفح سيارات الوكالات الجديدة وقدّم طلب شراء كاش أو تمويل مع عادل للسيارات.",
+        content: "تصفح سيارات الوكالات الجديدة وقدّم طلب شراء كاش أو تمويل مع نجم الشارقة للسيارات.",
       },
-      { name: "author", content: "عادل للسيارات" },
-      { property: "og:title", content: "عادل للسيارات" },
+      { name: "author", content: "نجم الشارقة للسيارات" },
+      { property: "og:title", content: "نجم الشارقة للسيارات" },
       { property: "og:description", content: "إختيارك الذهبي لإمتلاك سيارة أحلامك في السعودية." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

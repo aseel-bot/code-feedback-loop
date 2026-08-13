@@ -15,13 +15,13 @@ const ICONS = {
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "خدمات ما بعد البيع | عادل للسيارات" },
+      { title: "خدمات ما بعد البيع | نجم الشارقة للسيارات" },
       {
         name: "description",
         content:
           "الضمان الممتد، العناية بالسيارة، المساعدة على الطريق، التظليل المجاني، والتوصيل إلى مدينتك.",
       },
-      { property: "og:title", content: "خدمات ما بعد البيع | عادل للسيارات" },
+      { property: "og:title", content: "خدمات ما بعد البيع | نجم الشارقة للسيارات" },
       { property: "og:description", content: "خدمات متكاملة تحمي سيارتك بعد الشراء." },
     ],
   }),
@@ -33,7 +33,7 @@ function ServicesPage() {
     <>
       <PageHero
         title="الخدمات"
-        subtitle="خدمات ما بعد البيع التي نقدمها لعملائنا في جميع مدن المملكة."
+        subtitle="خدمات ما بعد البيع التي نقدمها لعملائنا في جميع المحافظات ."
         crumbs={[{ label: "الخدمات" }]}
       />
       <div className="mx-auto max-w-7xl px-4 py-12">

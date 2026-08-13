@@ -24,13 +24,13 @@ import { T, containerStagger, fadeUp } from "@/lib/motion";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "عادل للسيارات | موزع معتمد لأكثر من 40 علامة تجارية" },
+      { title: "نجم الشارقة للسيارات | موزع معتمد لأكثر من 40 علامة تجارية" },
       {
         name: "description",
         content:
-          "تصفح سيارات الوكالات الجديدة، قارن الأسعار والأقساط، وقدّم طلب شراء كاش أو تمويل مع عادل للسيارات في السعودية.",
+          "تصفح سيارات الوكالات الجديدة، قارن الأسعار والأقساط، وقدّم طلب شراء كاش أو تمويل مع نجم الشارقة للسيارات في اليمن.",
       },
-      { property: "og:title", content: "عادل للسيارات | إختيارك الذهبي لإمتلاك سيارة أحلامك" },
+      { property: "og:title", content: "نجم الشارقة للسيارات | إختيارك الذهبي لإمتلاك سيارة أحلامك" },
       {
         property: "og:description",
         content: "اكتشف، قارن، امتلك وانطلق بسهولة | سيارات وكالات جديدة بخطط تمويل مرنة.",
@@ -81,7 +81,7 @@ function Home() {
         >
           <motion.span
             variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: T.hero } }} className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-xs font-bold text-accent">
-            <BadgeCheck className="size-4" /> موزع معتمد | شركة عادل للسيارات
+            <BadgeCheck className="size-4" /> موزع معتمد | شركة نجم الشارقة للسيارات
           </motion.span>
           <motion.h1
             variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: T.hero } }}
@@ -217,32 +217,32 @@ function Home() {
         >
           {OFFERS.map((o) => (
             <motion.div key={o.slug} variants={fadeUp} className="offer-glow rounded-xl">
-            <Link
-              to="/offers/$slug"
-              params={{ slug: o.slug }}
-              className="group relative block overflow-hidden rounded-xl border border-border bg-card"
-            >
-              <span className="absolute end-3 top-3 z-10 rounded-full bg-accent px-2.5 py-1 text-[11px] font-bold text-accent-foreground">
-                عرض
-              </span>
-              <img
-                src={o.image}
-                alt={o.title}
-                loading="lazy"
-                width={1200}
-                height={800}
-                className="h-40 w-full object-cover transition duration-500 group-hover:scale-105"
-              />
-              <div className="p-4">
-                <h3 className="text-base group-hover:text-accent">{o.title}</h3>
-                <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{o.subtitle}</p>
-              </div>
-            </Link>
+              <Link
+                to="/offers/$slug"
+                params={{ slug: o.slug }}
+                className="group relative block overflow-hidden rounded-xl border border-border bg-card"
+              >
+                <span className="absolute end-3 top-3 z-10 rounded-full bg-accent px-2.5 py-1 text-[11px] font-bold text-accent-foreground">
+                  عرض
+                </span>
+                <img
+                  src={o.image}
+                  alt={o.title}
+                  loading="lazy"
+                  width={1200}
+                  height={800}
+                  className="h-40 w-full object-cover transition duration-500 group-hover:scale-105"
+                />
+                <div className="p-4">
+                  <h3 className="text-base group-hover:text-accent">{o.title}</h3>
+                  <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{o.subtitle}</p>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
       </section>
-
+      {/* 
       <section className="mx-auto mt-20 max-w-7xl px-4">
         <h2 className="text-center font-display text-2xl">البنوك والشركات المعتمدة</h2>
         <div className="marquee mt-8">
@@ -262,6 +262,7 @@ function Home() {
           </div>
         </div>
       </section>
+      */}
     </>
   );
 }

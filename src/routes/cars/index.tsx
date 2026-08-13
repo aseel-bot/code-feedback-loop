@@ -42,22 +42,36 @@ export const Route = createFileRoute("/cars/")({
 function BrandBadgeLogo({ brand }: { brand: string }) {
   const slug = BRAND_ICONS[brand];
   const localSrc = BRAND_LOCAL_LOGOS[brand];
-  const [failed, setFailed] = useState(false);
+  const [localFailed, setLocalFailed] = useState(false);
+  const [iconFailed, setIconFailed] = useState(false);
   const wordmark = BRAND_WORDMARKS[brand] ?? brand;
 
-  const imgSrc = !failed && slug ? `https://cdn.simpleicons.org/${slug}/d97706` : localSrc ?? null;
+  // Priority: local logo first → SimpleIcons (amber) fallback → text
+  const useLocal = localSrc && !localFailed;
+  const useIcon = !useLocal && slug && !iconFailed;
+  const imgSrc = useLocal
+    ? localSrc
+    : useIcon
+      ? `https://cdn.simpleicons.org/${slug}/d97706`
+      : null;
 
-  if (!imgSrc || (failed && !slug)) {
-    return <span className="font-bold text-[11px]">{wordmark}</span>;
+  const handleError = () => {
+    if (useLocal) setLocalFailed(true);
+    else if (useIcon) setIconFailed(true);
+  };
+
+  if (!imgSrc) {
+    return <span className="font-bold text-[11px] text-accent">{wordmark}</span>;
   }
 
   return (
     <img
       src={imgSrc}
       alt={brand}
+      style={useLocal ? { filter: "brightness(0) saturate(100%) invert(57%) sepia(87%) saturate(618%) hue-rotate(358deg) brightness(95%)" } : undefined}
       className="size-4.5 object-contain shrink-0 opacity-90 transition duration-200 group-hover:scale-110"
       loading="lazy"
-      onError={() => setFailed(true)}
+      onError={handleError}
     />
   );
 }

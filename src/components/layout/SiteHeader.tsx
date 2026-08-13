@@ -30,9 +30,7 @@ export function SiteHeader() {
             <Link to="/faq" className="opacity-80 transition hover:opacity-100">
               الأسئلة الشائعة
             </Link>
-            <Link to="/jobs" className="opacity-80 transition hover:opacity-100">
-              الوظائف
-            </Link>
+
             <Link to="/contact-us" className="opacity-80 transition hover:opacity-100">
               تواصل معنا
             </Link>
@@ -54,9 +52,9 @@ export function SiteHeader() {
           <Link to="/" className="group flex shrink-0 items-center gap-2.5">
             <CarLogo className="size-9" />
             <span className="font-display text-lg leading-tight font-black">
-              عادل للسيارات
+              نجم الشارقة للسيارات
               <span className="block text-[10px] font-medium tracking-widest text-muted-foreground">
-                ADELCARS
+                NAGM AL-SHREEKA
               </span>
             </span>
           </Link>

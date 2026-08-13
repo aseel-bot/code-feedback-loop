@@ -11,13 +11,13 @@ import {
 export const Route = createFileRoute("/faq")({
   head: () => ({
     meta: [
-      { title: "الأسئلة الشائعة | عادل للسيارات" },
+      { title: "الأسئلة الشائعة | نجم الشارقة للسيارات" },
       {
         name: "description",
         content: "إجابات على أكثر أسئلة العملاء تكرارًا حول الشراء، التمويل، الخدمات والشكاوى.",
       },
-      { property: "og:title", content: "الأسئلة الشائعة | عادل للسيارات" },
-      { property: "og:description", content: "كل ما تحتاج معرفته قبل شراء سيارتك من عادل للسيارات." },
+      { property: "og:title", content: "الأسئلة الشائعة | نجم الشارقة للسيارات" },
+      { property: "og:description", content: "كل ما تحتاج معرفته قبل شراء سيارتك من نجم الشارقة للسيارات." },
     ],
   }),
   component: Faq,

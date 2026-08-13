@@ -4,12 +4,12 @@ import { PageHero } from "@/components/layout/PageHero";
 export const Route = createFileRoute("/privacy-policy")({
   head: () => ({
     meta: [
-      { title: "سياسة الخصوصية | عادل للسيارات" },
+      { title: "سياسة الخصوصية | نجم الشارقة للسيارات" },
       {
         name: "description",
-        content: "كيف نجمع بيانات عملائنا ونستخدمها ونحميها في موقع عادل للسيارات.",
+        content: "كيف نجمع بيانات عملائنا ونستخدمها ونحميها في موقع نجم الشارقة للسيارات.",
       },
-      { property: "og:title", content: "سياسة الخصوصية | عادل للسيارات" },
+      { property: "og:title", content: "سياسة الخصوصية | نجم الشارقة للسيارات" },
       { property: "og:description", content: "التزامنا بحماية بياناتك الشخصية." },
     ],
   }),

@@ -4,21 +4,46 @@ import { BRANDS, BRAND_ICONS, BRAND_WORDMARKS, BRAND_LOCAL_LOGOS, CARS } from "@
 import { Sparkles, Grid } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
+/**
+ * Brand logo component with unified amber accent tinting.
+ * Priority: local logo → SimpleIcons CDN → text wordmark fallback.
+ * - SimpleIcons: tinted via CDN URL hex param (/d97706)
+ * - Local logos: tinted via CSS filter to match accent color
+ */
 function BrandLogo({ brand, className }: { brand: string; className?: string }) {
   const slug = BRAND_ICONS[brand];
   const localSrc = BRAND_LOCAL_LOGOS[brand];
-  const [failed, setFailed] = useState(false);
+  const [localFailed, setLocalFailed] = useState(false);
+  const [iconFailed, setIconFailed] = useState(false);
   const wordmark = BRAND_WORDMARKS[brand] ?? brand;
 
-  const imgSrc = !failed && slug ? `https://cdn.simpleicons.org/${slug}/d97706` : localSrc ?? null;
+  // Priority: local logo first → SimpleIcons fallback → text
+  const useLocal = localSrc && !localFailed;
+  const useIcon = !useLocal && slug && !iconFailed;
 
-  if (!imgSrc || (failed && !slug)) {
+  const imgSrc = useLocal
+    ? localSrc
+    : useIcon
+      ? `https://cdn.simpleicons.org/${slug}/d97706`
+      : null;
+
+  const handleError = () => {
+    if (useLocal) setLocalFailed(true);
+    else if (useIcon) setIconFailed(true);
+  };
+
+  if (!imgSrc) {
     return (
       <span className="font-display text-[12px] font-bold tracking-wide text-foreground/80 transition group-hover:text-accent">
         {wordmark}
       </span>
     );
   }
+
+  // Local logos need CSS filter to tint to amber; SimpleIcons already colored via URL
+  const filterClass = useLocal
+    ? "brightness-0 saturate-100"
+    : "";
 
   return (
     <img
@@ -27,8 +52,9 @@ function BrandLogo({ brand, className }: { brand: string; className?: string }) 
       loading="lazy"
       width={40}
       height={40}
-      onError={() => setFailed(true)}
-      className={className ?? "size-9 object-contain opacity-90 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100"}
+      onError={handleError}
+      style={useLocal ? { filter: "brightness(0) saturate(100%) invert(57%) sepia(87%) saturate(618%) hue-rotate(358deg) brightness(95%)" } : undefined}
+      className={className ?? `size-9 object-contain opacity-90 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100 ${filterClass}`}
     />
   );
 }

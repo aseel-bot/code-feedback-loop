@@ -17,12 +17,12 @@ const VACANCIES = [
 export const Route = createFileRoute("/jobs")({
   head: () => ({
     meta: [
-      { title: "الوظائف الشاغرة | انضم لفريق عادل للسيارات" },
+      { title: "الوظائف الشاغرة | انضم لفريق نجم الشارقة للسيارات" },
       {
         name: "description",
-        content: "تصفح الوظائف الشاغرة في عادل للسيارات وقدّم طلبك مباشرة عبر الموقع.",
+        content: "تصفح الوظائف الشاغرة في نجم الشارقة للسيارات وقدّم طلبك مباشرة عبر الموقع.",
       },
-      { property: "og:title", content: "الوظائف | عادل للسيارات" },
+      { property: "og:title", content: "الوظائف | نجم الشارقة للسيارات" },
       { property: "og:description", content: "فرص عمل في المبيعات والتمويل وخدمة العملاء." },
     ],
   }),
@@ -47,7 +47,7 @@ function Jobs() {
     <>
       <PageHero
         title="الوظائف"
-        subtitle="انضم إلى فريق عادل للسيارات وابنِ مستقبلك المهني معنا."
+        subtitle="انضم إلى فريق نجم الشارقة للسيارات وابنِ مستقبلك المهني معنا."
         crumbs={[{ label: "الوظائف" }]}
       />
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 lg:grid-cols-2">
@@ -57,9 +57,8 @@ function Jobs() {
             <button
               key={v.title}
               onClick={() => setSelected(v.title)}
-              className={`w-full rounded-xl border p-5 text-start transition ${
-                selected === v.title ? "border-accent bg-accent/5" : "border-border bg-card"
-              }`}
+              className={`w-full rounded-xl border p-5 text-start transition ${selected === v.title ? "border-accent bg-accent/5" : "border-border bg-card"
+                }`}
             >
               <h3 className="text-base">{v.title}</h3>
               <p className="mt-2 flex items-center gap-4 text-xs text-muted-foreground">

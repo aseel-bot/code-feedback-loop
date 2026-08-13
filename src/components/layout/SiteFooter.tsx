@@ -21,10 +21,10 @@ export function SiteFooter() {
         <div>
           <div className="group flex items-center gap-2.5">
             <CarLogo className="size-9" />
-            <span className="font-display text-lg font-black">عادل للسيارات</span>
+            <span className="font-display text-lg font-black">نجم الشارقة للسيارات</span>
           </div>
           <p className="mt-4 text-sm opacity-75">
-            موزع معتمد لأكثر من 40 علامة تجارية للسيارات في المملكة العربية السعودية.
+            موزع معتمد لأكثر من 20 علامة تجارية للسيارات في اليمن.
           </p>
           <div className="mt-5 flex gap-3">
             <a href={CONTACT.social.linkedin} aria-label="LinkedIn" className="opacity-70 hover:opacity-100">
@@ -93,7 +93,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-white/10 text-center text-xs opacity-60 py-4">
-        © {new Date().getFullYear()} شركة عادل للسيارات. جميع الحقوق محفوظة.
+        © {new Date().getFullYear()} شركة نجم الشارقة للسيارات. جميع الحقوق محفوظة.
       </div>
     </footer>
   );

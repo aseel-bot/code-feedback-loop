@@ -12,12 +12,12 @@ import { Textarea } from "@/components/ui/textarea";
 export const Route = createFileRoute("/contact-us")({
   head: () => ({
     meta: [
-      { title: "تواصل معنا | عادل للسيارات" },
+      { title: "تواصل معنا | نجم الشارقة للسيارات" },
       {
         name: "description",
-        content: "تواصل مع فريق عادل للسيارات عبر الرقم الموحد 920006652 أو نموذج التواصل، والرد خلال 24 ساعة عمل.",
+        content: "تواصل مع فريق نجم الشارقة للسيارات عبر الرقم الموحد 770055555 أو نموذج التواصل، والرد خلال 24 ساعة عمل.",
       },
-      { property: "og:title", content: "تواصل معنا | عادل للسيارات" },
+      { property: "og:title", content: "تواصل معنا | نجم الشارقة للسيارات" },
       { property: "og:description", content: "استفسارات، شكاوى، ومقترحات ، نرد خلال 24 ساعة عمل." },
     ],
   }),

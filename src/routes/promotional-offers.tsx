@@ -5,12 +5,12 @@ import { PageHero } from "@/components/layout/PageHero";
 export const Route = createFileRoute("/promotional-offers")({
   head: () => ({
     meta: [
-      { title: "العروض الترويجية الموسمية | عادل للسيارات" },
+      { title: "العروض الترويجية الموسمية | نجم الشارقة للسيارات" },
       {
         name: "description",
         content: "عروض ترويجية موسمية ومناسباتية على سيارات الوكالات لفترة محدودة.",
       },
-      { property: "og:title", content: "العروض الترويجية | عادل للسيارات" },
+      { property: "og:title", content: "العروض الترويجية | نجم الشارقة للسيارات" },
       { property: "og:description", content: "خصومات موسمية ومناسباتية لفترة محدودة." },
     ],
   }),
